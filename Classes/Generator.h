@@ -6,24 +6,27 @@
 #include <ctime>
 #include "cocos2d.h"
 
-class Generator
+class Generator : public cocos2d::DrawNode
 {
 private:
-	cocos2d::DrawNode* _drawNode;
-	int _hWidth, _hHeight, _width, _height;
+	int _width, _height, _hWidth, _hHeight;
 	float _radius, _diameter, _velocity;
 	std::time_t _lastLaserTime;
 	std::vector<Laser> _lasers;
 	void render(Laser& laser);
 public:
+	CREATE_FUNC(Generator);
+
+	// constructor will be invoked by create function
+	Generator();
+
+	virtual bool init();
+
 	void step(float dt);
 	int timeFromLastLaser() const;
 	int numLasers() const { return _lasers.size(); };
 	void render();
-	Generator(int width, int height);
-	cocos2d::DrawNode* drawNode() const { return _drawNode; };
 	void addLaser();
-	~Generator();
 };
 
 #endif // __GENERATOR_H__

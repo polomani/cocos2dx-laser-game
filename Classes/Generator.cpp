@@ -4,17 +4,30 @@
 #include <ctime>
 #include "cocos2d.h"
 
-Generator::Generator(int width, int height): 
-_drawNode(cocos2d::DrawNode::create()),
-_width (width), 
-_height (height), 
-_hWidth (width / 2), 
-_hHeight (height / 2),
-_radius(sqrt(width*width + height*height)), 
-_diameter(_radius * 2), _velocity(120),
-_lastLaserTime(0)
+using namespace cocos2d;
+
+Generator::Generator()
+	:
+	_width(Director::getInstance()->getVisibleSize().width),
+	_height(Director::getInstance()->getVisibleSize().height),
+	_hWidth(_width / 2),
+	_hHeight(_height / 2),
+	_radius(sqrt(_width*_width + _height*_height)),
+	_diameter(_radius * 2),
+	_velocity(120),
+	_lastLaserTime(0)
 {
-	
+
+}
+
+bool Generator::init()
+{
+	if (!DrawNode::init())
+	{
+		return false;
+	}
+	// initialize was successful
+	return true;
 }
 
 void Generator::addLaser()
@@ -25,17 +38,21 @@ void Generator::addLaser()
 	float tox(_width - x);
 	float toy(_height - y);
 	float angle = M_PI_2 + atan2(-y + _hHeight, -x + _hWidth);
+	
 	Laser laser(x, y, tox, toy, _radius, angle);
 	_lasers.push_back(laser);
+	
 	_lastLaserTime = std::time(0);
 }
 
 void Generator::step(float dt)
 {
 	std::vector<Laser> newLasers;
+	
 	for (std::vector<Laser>::iterator i = _lasers.begin(); i != _lasers.end(); ++i)
 		if (i->step(dt, _velocity))
 			newLasers.push_back(*i);
+	
 	_lasers = newLasers;
 }
 
@@ -46,19 +63,15 @@ int Generator::timeFromLastLaser() const
 
 void Generator::render()
 {
-	_drawNode->clear();
+	this->clear();
 	for (std::vector<Laser>::iterator i = _lasers.begin(); i != _lasers.end(); ++i)
 		render(*i);
 }
 
 void Generator::render(Laser& l)
 {
-	_drawNode->drawSegment(cocos2d::Vec2(l.bx(), l.by()), 
+	this->drawSegment(cocos2d::Vec2(l.bx(), l.by()), 
 						  cocos2d::Vec2(l.ax(), l.ay()), 
 						  3.0f,
 						  cocos2d::Color4F::RED);
-}
-
-Generator::~Generator()
-{
 }

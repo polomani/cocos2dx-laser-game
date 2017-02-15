@@ -66,15 +66,12 @@ bool HelloWorld::init()
 	sprite->setScale(0.5);
 
     // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
-
-	//_drawNode = DrawNode::create();
-	
+    this->addChild(sprite, 0);	
     
-	_generator = new Generator(visibleSize.width, visibleSize.height);
+	_generator = Generator::create();
 	_generator->addLaser();
 
-	this->addChild(_generator->drawNode(), 2);
+	this->addChild(_generator, 2);
 	
 
 	// to run onUpdate() method
