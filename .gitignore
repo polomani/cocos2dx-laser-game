@@ -767,10 +767,6 @@ npm-debug.log
 /proj.ios_mac/build/
 Breakpoints_v2.xcbkptlist
 UserInterfaceState.xcuserstate
-/Resources/*
-!/Resources/Sounds
-!/Resources/Particles
-!/Resources/Fonts
 /.keystore
 /Classes/EnvPrivate.h
 
