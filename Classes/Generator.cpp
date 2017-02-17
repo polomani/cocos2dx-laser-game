@@ -3,6 +3,7 @@
 #include <vector>
 #include <ctime>
 #include "cocos2d.h"
+#include "ShaderUtil.h"
 
 using namespace cocos2d;
 
@@ -15,7 +16,8 @@ Generator::Generator()
 	_radius(sqrt(_width*_width + _height*_height)),
 	_diameter(_radius * 2),
 	_velocity(120),
-	_lastLaserTime(0)
+	_lastLaserTime(0),
+	_shaderProgram(ShaderUtil::loadShader("shaders/lazer"))
 {
 
 }
@@ -26,6 +28,12 @@ bool Generator::init()
 	{
 		return false;
 	}
+
+	if (!_shaderProgram)
+		return false;
+
+	setGLProgram(_shaderProgram);
+
 	// initialize was successful
 	return true;
 }
@@ -63,15 +71,18 @@ int Generator::timeFromLastLaser() const
 
 void Generator::render()
 {
-	this->clear();
+	clear();
 	for (std::vector<Laser>::iterator i = _lasers.begin(); i != _lasers.end(); ++i)
 		render(*i);
 }
 
 void Generator::render(Laser& l)
 {
-	this->drawSegment(cocos2d::Vec2(l.bx(), l.by()), 
+	drawSegment(cocos2d::Vec2(l.bx(), l.by()), 
 						  cocos2d::Vec2(l.ax(), l.ay()), 
 						  3.0f,
 						  cocos2d::Color4F::RED);
+	
+	setGLProgramState(l.getState(_shaderProgram));
+	_shaderProgram->use();
 }

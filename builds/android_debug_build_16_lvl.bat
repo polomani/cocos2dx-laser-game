@@ -1,0 +1,1 @@
+cocos compile --src E:\workspace\cocoslasergame --platform android --ap android-16 --ndk-mode debug --output-dir /builds/ --jobs 10

@@ -14,6 +14,7 @@ private:
 	std::time_t _lastLaserTime;
 	std::vector<Laser> _lasers;
 	void render(Laser& laser);
+	cocos2d::GLProgram* _shaderProgram;
 public:
 	CREATE_FUNC(Generator);
 
