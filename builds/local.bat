@@ -1,0 +1,1 @@
+set proj_root_path=E:\workspace\cocoslasergame
