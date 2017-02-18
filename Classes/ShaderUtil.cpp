@@ -1,9 +1,9 @@
 #include "ShaderUtil.h"
 
-GLProgram* ShaderUtil::loadShader(const std::string& path)
+GLProgram* ShaderUtil::loadShader(const std::string& name, const std::string& path)
 {
 	auto glCache = GLProgramCache::getInstance();
-	GLProgram* prog = glCache->getGLProgram(path);
+	GLProgram* prog = glCache->getGLProgram(name);
 	if (!prog)
 	{
 		auto fs = FileUtils::getInstance();
@@ -19,16 +19,16 @@ GLProgram* ShaderUtil::loadShader(const std::string& path)
 
 		prog = GLProgram::createWithByteArrays(vertB, fragB);
 
-		glCache->addGLProgram(prog, path);
+		glCache->addGLProgram(prog, name);
 	}
 
 	return prog;
 }
 
-GLProgram* ShaderUtil::loadShader(const std::string& vertexShader, const std::string& fragmentShader)
+GLProgram* ShaderUtil::loadShader(const std::string& name, const std::string& vertexShader, const std::string& fragmentShader)
 {
 	auto glCache = GLProgramCache::getInstance();
-	GLProgram* prog = glCache->getGLProgram(vertexShader + fragmentShader);
+	GLProgram* prog = glCache->getGLProgram(name);
 	if (!prog)
 	{
 		auto fs = FileUtils::getInstance();
@@ -44,7 +44,21 @@ GLProgram* ShaderUtil::loadShader(const std::string& vertexShader, const std::st
 
 		prog = GLProgram::createWithByteArrays(vertB, fragB);
 
-		glCache->addGLProgram(prog, vertexShader + fragmentShader);
+		glCache->addGLProgram(prog, name);
+	}
+
+	return prog;
+}
+
+GLProgram* ShaderUtil::loadShaderFromStrings(const std::string& name, const std::string& vertexSource, const std::string& fragmentSource)
+{
+	auto glCache = GLProgramCache::getInstance();
+	GLProgram* prog = glCache->getGLProgram(name);
+	if (!prog)
+	{
+		prog = GLProgram::createWithByteArrays(vertexSource.c_str(), fragmentSource.c_str());
+
+		glCache->addGLProgram(prog, name);
 	}
 
 	return prog;

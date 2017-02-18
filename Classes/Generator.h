@@ -15,6 +15,9 @@ private:
 	std::vector<Laser> _lasers;
 	void render(Laser& laser);
 	cocos2d::GLProgram* _shaderProgram;
+
+	static const char* vertexShader;
+	static const char* fragmentShader;
 public:
 	// constructor will be invoked by create function
 	Generator();

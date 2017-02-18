@@ -7,6 +7,9 @@
 
 using namespace cocos2d;
 
+const char* Generator::vertexShader = "attribute vec4 a_position;attribute vec2 a_texCoord;attribute vec4 a_color;uniform vec4 lazer_color;\n #ifdef GL_ES \n varying lowp vec4 v_fragmentColor;varying mediump vec2 v_texCoord;varying mediump vec2 v_texCoord2;\n #else \n varying vec4 v_fragmentColor;varying vec2 v_texCoord;varying float v_screenY; \n #endif \n void main(){float alpha = 1.0;if (CC_Random01[0] < 0.5)alpha = 0.0;float blueshade = 1.0;v_fragmentColor = lazer_color;v_texCoord = a_texCoord;gl_Position = CC_MVPMatrix * a_position;v_screenY = gl_Position.y;}";
+const char* Generator::fragmentShader = "#ifdef GL_ES \n varying lowp vec4 v_fragmentColor;varying mediump vec2 v_texCoord;varying mediump vec2 v_screenY; \n #else \n varying vec4 v_fragmentColor;varying vec2 v_texCoord;varying float v_screenY; \n #endif \n void main(){vec4 texColor = v_fragmentColor;if (texColor.a < 0.2)discard;if (mod(v_screenY + CC_SinTime[1], 0.005) > 0.0025)discard;gl_FragColor = vec4(texColor.xyz, 0.2);}";
+
 Generator::Generator()
 	:
 	_width(Director::getInstance()->getVisibleSize().width),
@@ -17,7 +20,7 @@ Generator::Generator()
 	_diameter(_radius * 2),
 	_velocity(120),
 	_lastLaserTime(0),
-	_shaderProgram(ShaderUtil::loadShader("shaders/lazer"))
+	_shaderProgram(ShaderUtil::loadShaderFromStrings("lazer_shader", vertexShader, fragmentShader))
 { }
 
 bool Generator::init()
