@@ -72,7 +72,6 @@ bool HelloWorld::init()
 	_generator->addLaser();
 
 	this->addChild(_generator, 2);
-	
 
 	// to run onUpdate() method
 	this->scheduleUpdate();

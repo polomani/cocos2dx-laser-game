@@ -191,9 +191,6 @@ tests/*/project/proj.android-studio/app/proguard-project.txt
 tests/*/proj.android-studio/app/build.xml
 tests/*/proj.android-studio/app/proguard-project.txt
 
-# Android
-project.properties
-
 # Ignore prebuilt libraries folder
 /external/*
 !/external/config.json
@@ -984,8 +981,6 @@ tests/*/project/proj.android-studio/app/proguard-project.txt
 tests/*/proj.android-studio/app/build.xml
 tests/*/proj.android-studio/app/proguard-project.txt
 
-# Android
-project.properties
 *.iml
 
 # Ignore prebuilt libraries folder

@@ -11,9 +11,20 @@ LOCAL_MODULE := MyGame_shared
 
 LOCAL_MODULE_FILENAME := libMyGame
 
+PROJECT_FILES := hellocpp/main.cpp
+PROJECT_FILES += $(wildcard $(LOCAL_PATH)/../../Classes/*.cpp)
+
+PROJECT_FILES := $(PROJECT_FILES:$(LOCAL_PATH)/%=%)
+
+#LOCAL_SRC_FILES := $(PROJECT_FILES)
+
+#CPP_CLASSES := $(wildcard $(LOCAL_PATH)/Classes/*.cpp)
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
-                   ../../Classes/HelloWorldScene.cpp
+                   ../../Classes/HelloWorldScene.cpp \
+                   ../../Classes/Generator.cpp \
+                   ../../Classes/ShaderUtil.cpp \
+                   ../../Classes/Laser.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 

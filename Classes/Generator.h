@@ -16,10 +16,9 @@ private:
 	void render(Laser& laser);
 	cocos2d::GLProgram* _shaderProgram;
 public:
-	CREATE_FUNC(Generator);
-
 	// constructor will be invoked by create function
 	Generator();
+	CREATE_FUNC(Generator);
 
 	virtual bool init();
 

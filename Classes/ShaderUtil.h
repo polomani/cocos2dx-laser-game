@@ -14,8 +14,8 @@ private:
 	ShaderUtil& operator=(const ShaderUtil&) { return *this; }
 	ShaderUtil(const ShaderUtil&) { }
 public:
-	static GLProgram* loadShader(const std::string&);
-	static GLProgram* loadShader(const std::string& vertexShader, const std::string& fragmentShader);
+	static GLProgram* loadShader(const std::string& path);
+	static GLProgram* loadShader(const std::string& pathVertex, const std::string& pathFragment);
 };
 
 #endif

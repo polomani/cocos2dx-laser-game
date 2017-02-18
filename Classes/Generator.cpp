@@ -18,9 +18,7 @@ Generator::Generator()
 	_velocity(120),
 	_lastLaserTime(0),
 	_shaderProgram(ShaderUtil::loadShader("shaders/lazer"))
-{
-
-}
+{ }
 
 bool Generator::init()
 {
