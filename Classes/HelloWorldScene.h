@@ -3,17 +3,22 @@
 
 #include "cocos2d.h"
 #include "Generator.h"
+#include "Hero.h"
 
 class HelloWorld : public cocos2d::Layer
 {
 public:
 	Generator* _generator;
 
+	Hero* _hero;
+
     static cocos2d::Scene* createScene();
 
     virtual bool init();
 
 	virtual void update(float);
+
+	void onMouseDown(cocos2d::Event *event);
     
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);

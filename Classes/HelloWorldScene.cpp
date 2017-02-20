@@ -1,6 +1,7 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 #include "Laser.h"
+#include "Hero.h"
 #include "Math.h"
 #include "IOS"
 
@@ -56,26 +57,26 @@ bool HelloWorld::init()
     /////////////////////////////
     // 3. add your codes below...
     
+	_hero = Hero::create();
+    this->addChild(_hero, 2);
 
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
-
-    // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-
-	sprite->setScale(0.5);
-
-    // add the sprite as a child to this layer
-    this->addChild(sprite, 0);	
-    
-	_generator = Generator::create();
+    _generator = Generator::create();
 	_generator->addLaser();
+	this->addChild(_generator, 0);
 
-	this->addChild(_generator, 2);
+	EventListenerMouse* mouseListener = EventListenerMouse::create();
+	mouseListener->onMouseDown = CC_CALLBACK_1(HelloWorld::onMouseDown, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
 
 	// to run onUpdate() method
 	this->scheduleUpdate();
     return true;
+}
+
+void HelloWorld::onMouseDown(Event *event)
+{
+	EventMouse* e = (EventMouse*)event;
+	_hero->jump(e->getLocationInView());
 }
 
 void HelloWorld::update(float dt)
