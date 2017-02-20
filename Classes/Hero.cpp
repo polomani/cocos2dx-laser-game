@@ -2,17 +2,15 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
-Hero::Hero() {
+bool Hero::init() 
+{
+	if (!Sprite::initWithFile(_HERO_PNG_))
+		return false;
+
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	auto size = Director::getInstance()->getVisibleSize();
 	this->setPosition(Vec2(size.width / 2 + origin.x, size.height / 2 + origin.y));
 	this->setScale(size.width / 10 / 196);
-}
-
-bool Hero::init() 
-{
-	if (!Sprite::init())
-		return false;
 
 	return true;
 }

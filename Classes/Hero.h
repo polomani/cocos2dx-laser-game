@@ -7,12 +7,12 @@
 class Hero : public cocos2d::Sprite
 {
 public:
-	Hero();
+	Hero(){};
 	void jump(cocos2d::Vec2 to);
 	static Hero* create()
 	{
 		Hero* hero = new (std::nothrow) Hero;
-		if (hero && hero->initWithFile(_HERO_PNG_))
+		if (hero && hero->init())
 		{
 			hero->autorelease();
 			return hero;
