@@ -3,25 +3,15 @@
 #define _HERO_PNG_ "hero.png"
 
 #include "cocos2d.h"
+USING_NS_CC;
 
-class Hero : public cocos2d::Sprite
+class Hero : public Sprite
 {
 public:
-	Hero(){};
-	void jump(cocos2d::Vec2 to);
-	static Hero* create()
-	{
-		Hero* hero = new (std::nothrow) Hero;
-		if (hero && hero->init())
-		{
-			hero->autorelease();
-			return hero;
-		}
-		CC_SAFE_DELETE(hero);
-		return nullptr;
-	};
-
+	CREATE_FUNC(Hero);
 	virtual bool init();
+
+	void jump(Vec2 to);
 };
 
 #endif
