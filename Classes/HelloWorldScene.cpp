@@ -73,7 +73,7 @@ bool HelloWorld::init()
     return true;
 }
 
-void HelloWorld::onMouseDown(Event *event)
+void HelloWorld::onMouseDown(cocos2d::Event *event)
 {
 	EventMouse* e = (EventMouse*)event;
 	_hero->jump(e->getLocationInView());

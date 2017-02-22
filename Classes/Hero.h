@@ -7,6 +7,9 @@ USING_NS_CC;
 
 class Hero : public Sprite
 {
+private:
+	bool jumpInProcess = false;
+	void onJumpEnd();
 public:
 	CREATE_FUNC(Hero);
 	virtual bool init();
