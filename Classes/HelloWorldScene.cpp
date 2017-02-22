@@ -68,6 +68,10 @@ bool HelloWorld::init()
 	mouseListener->onMouseDown = CC_CALLBACK_1(HelloWorld::onMouseDown, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
 
+	EventListenerTouchOneByOne* touchListener = EventListenerTouchOneByOne::create();
+	touchListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+
 	// to run onUpdate() method
 	this->scheduleUpdate();
     return true;
@@ -77,6 +81,13 @@ void HelloWorld::onMouseDown(cocos2d::Event *event)
 {
 	EventMouse* e = (EventMouse*)event;
 	_hero->jump(e->getLocationInView());
+}
+
+bool HelloWorld::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+	_hero->jump(touch->getLocationInView());
+
+	return true;
 }
 
 void HelloWorld::update(float dt)

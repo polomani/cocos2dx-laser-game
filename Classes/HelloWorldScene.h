@@ -19,6 +19,7 @@ public:
 	virtual void update(float);
 
 	void onMouseDown(cocos2d::Event *event);
+	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
     
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
