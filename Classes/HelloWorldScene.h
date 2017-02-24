@@ -7,6 +7,11 @@
 
 class HelloWorld : public cocos2d::Layer
 {
+private:
+	/*
+	for some devices position should be reverse by axis Oy
+	*/
+	static void reverse(cocos2d::Vec2&);
 public:
 	Generator* _generator;
 

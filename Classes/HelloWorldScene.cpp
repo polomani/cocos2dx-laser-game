@@ -64,13 +64,17 @@ bool HelloWorld::init()
 	_generator->addLaser();
 	this->addChild(_generator, 0);
 
-	EventListenerMouse* mouseListener = EventListenerMouse::create();
-	mouseListener->onMouseDown = CC_CALLBACK_1(HelloWorld::onMouseDown, this);
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	EventListenerTouchOneByOne* touchListener = EventListenerTouchOneByOne::create();
 	touchListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+#endif
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+	EventListenerMouse* mouseListener = EventListenerMouse::create();
+	mouseListener->onMouseDown = CC_CALLBACK_1(HelloWorld::onMouseDown, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
+#endif
 
 	// to run onUpdate() method
 	this->scheduleUpdate();
@@ -85,9 +89,17 @@ void HelloWorld::onMouseDown(cocos2d::Event *event)
 
 bool HelloWorld::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-	_hero->jump(touch->getLocationInView());
+	cocos2d::Vec2 to = touch->getLocationInView();
+	reverse(to);
+	_hero->jump(to);
 
 	return true;
+}
+
+void HelloWorld::reverse(cocos2d::Vec2& vec)
+{
+	Size size = Director::getInstance()->getVisibleSize();
+	vec.y = size.height - vec.y;
 }
 
 void HelloWorld::update(float dt)
