@@ -11,7 +11,7 @@ USING_NS_CC;
 Scene* HelloWorld::createScene()
 {
     // 'scene' is an autorelease object
-    auto scene = Scene::create();
+	auto scene = Scene::createWithPhysics();
     
     // 'layer' is an autorelease object
     auto layer = HelloWorld::create();
@@ -109,6 +109,8 @@ void HelloWorld::update(float dt)
 
 	_generator->step(dt);
 	_generator->render();
+	if (!_hero->jumping())
+		_generator->collideLasersVsHero();
 }
 
 void HelloWorld::menuCloseCallback(Ref* pSender)

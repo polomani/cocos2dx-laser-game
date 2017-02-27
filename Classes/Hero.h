@@ -14,6 +14,7 @@ public:
 	CREATE_FUNC(Hero);
 	virtual bool init();
 
+	bool jumping() const { return jumpInProcess; };
 	void jump(Vec2 to);
 };
 

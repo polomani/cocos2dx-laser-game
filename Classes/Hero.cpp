@@ -17,6 +17,10 @@ bool Hero::init()
 	this->setPosition(Vec2(size.width / 2 + origin.x, size.height / 2 + origin.y));
 	this->setScale(size.width / 10 / 250);
 
+	auto physicsBody = PhysicsBody::createBox(getContentSize());
+	physicsBody->setDynamic(false);
+	setPhysicsBody(physicsBody);
+
 	return true;
 }
 

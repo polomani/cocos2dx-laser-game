@@ -29,6 +29,7 @@ public:
 	int timeFromLastLaser() const;
 	int numLasers() const { return _lasers.size(); };
 	void render();
+	void collideLasersVsHero();
 	void addLaser();
 };
 

@@ -5,7 +5,7 @@
 #include "cocos2d.h"
 #include "ShaderUtil.h"
 
-using namespace cocos2d;
+USING_NS_CC;
 
 Generator::Generator()
 	:
@@ -58,13 +58,33 @@ void Generator::step(float dt)
 	for (std::vector<Laser>::iterator i = _lasers.begin(); i != _lasers.end(); ++i)
 		if (i->step(dt, _velocity))
 			newLasers.push_back(*i);
-	
+
 	_lasers = newLasers;
 }
 
 int Generator::timeFromLastLaser() const
 {
 	return std::time(0) - _lastLaserTime;
+}
+
+void Generator::collideLasersVsHero()
+{
+	PhysicsRayCastCallbackFunc hit = [this](PhysicsWorld& world,
+		const PhysicsRayCastInfo& info, void* data)->bool
+	{
+		//just for debug
+		//drawDot(info.contact, 3, Color4F::BLUE);
+		//gameOver()
+		return true;
+	};
+
+	PhysicsWorld* world = Director::getInstance()->getRunningScene()->getPhysicsWorld();
+
+	for (const auto &i : _lasers)
+		world->rayCast( hit,
+						Vec2(i.ax(), i.ay()),
+						Vec2(i.bx(), i.by()),
+						nullptr );
 }
 
 void Generator::render()
