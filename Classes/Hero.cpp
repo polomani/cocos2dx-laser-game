@@ -1,7 +1,11 @@
 #include "Hero.h"
+#include "PhysicsShapeCache.h"
 #include "cocos2d.h"
+
 USING_NS_CC;
 
+#define HERO_PHYSICS_BODY "hero"
+#define HERO_PNG "hero.png"
 #define JUMP_SPEED 0.001
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #define JUMP_SPEED 0.0005
@@ -9,7 +13,7 @@ USING_NS_CC;
 
 bool Hero::init() 
 {
-	if (!Sprite::initWithFile(_HERO_PNG_))
+	if (!Sprite::initWithFile(HERO_PNG))
 		return false;
 
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -17,7 +21,7 @@ bool Hero::init()
 	this->setPosition(Vec2(size.width / 2 + origin.x, size.height / 2 + origin.y));
 	this->setScale(size.width / 10 / 250);
 
-	auto physicsBody = PhysicsBody::createBox(getContentSize());
+	auto physicsBody = PhysicsShapeCache::getInstance()->createBodyWithName(HERO_PHYSICS_BODY);
 	physicsBody->setDynamic(false);
 	setPhysicsBody(physicsBody);
 

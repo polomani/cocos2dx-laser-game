@@ -72,8 +72,6 @@ void Generator::collideLasersVsHero()
 	PhysicsRayCastCallbackFunc hit = [this](PhysicsWorld& world,
 		const PhysicsRayCastInfo& info, void* data)->bool
 	{
-		//just for debug
-		//drawDot(info.contact, 3, Color4F::BLUE);
 		//gameOver()
 		return true;
 	};

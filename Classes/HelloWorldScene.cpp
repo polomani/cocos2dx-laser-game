@@ -1,11 +1,13 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "PhysicsShapeCache.h"
 #include "Laser.h"
 #include "Hero.h"
 #include "Math.h"
 #include "IOS"
 
 #define COCOS2D_DEBUG 1
+#define PHYSICS_PLIST "physics.json.plist"
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
@@ -56,7 +58,8 @@ bool HelloWorld::init()
 
     /////////////////////////////
     // 3. add your codes below...
-    
+	PhysicsShapeCache::getInstance()->addShapesWithFile(PHYSICS_PLIST);
+
 	_hero = Hero::create();
     this->addChild(_hero, 2);
 
