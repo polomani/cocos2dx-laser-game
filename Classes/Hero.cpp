@@ -39,17 +39,17 @@ void Hero::jump(cocos2d::Vec2 to)
 								  to.x - this->getPositionX());
 	float angle = atan2(movement.x, movement.y);
 	this->setRotation(90 - angle / M_PI * 180);
-
-	CallFunc* onJumpEndCallBack = CallFunc::create(this, callfunc_selector(Hero::onJumpEnd));
+	
+	auto callback = CallFunc::create([this]() { this->endJumping(); });
 	Sequence* sequence = Sequence::create(
 		CCMoveTo::create(movement.length()*JUMP_SPEED, to),
-		onJumpEndCallBack,
+		callback,
 		NULL
 	);
 	this->runAction(sequence);
 }
 
-void Hero::onJumpEnd()
+void Hero::endJumping()
 {
 	jumpInProcess = false;
 }

@@ -8,13 +8,15 @@ class Hero : public Sprite
 {
 private:
 	bool jumpInProcess = false;
-	void onJumpEnd();
 public:
 	CREATE_FUNC(Hero);
 	virtual bool init();
 
 	bool jumping() const { return jumpInProcess; };
 	void jump(Vec2 to);
+
+	// std required callback's functions to be public
+	void endJumping();
 };
 
 #endif
