@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "Generator.h"
+#include "GameGUI.h"
 #include "Hero.h"
 
 class HelloWorld : public cocos2d::Layer
@@ -12,7 +13,10 @@ private:
 	for some devices position should be reverse by axis Oy
 	*/
 	static void reverse(cocos2d::Vec2&);
+	float _score;
 public:
+	GameGUI* _gui;
+
 	Generator* _generator;
 
 	Hero* _hero;
@@ -22,6 +26,8 @@ public:
     virtual bool init();
 
 	virtual void update(float);
+
+	void setScore(float);
 
 	void onMouseDown(cocos2d::Event *event);
 	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);

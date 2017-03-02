@@ -3,6 +3,7 @@
 #include "PhysicsShapeCache.h"
 #include "Laser.h"
 #include "Hero.h"
+#include "GameGUI.h"
 #include "Math.h"
 #include "IOS"
 
@@ -67,6 +68,10 @@ bool HelloWorld::init()
 	_generator->addLaser();
 	this->addChild(_generator, 0);
 
+	_gui = GameGUI::create();
+	this->addChild(_gui, 3);
+	setScore(0);
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	EventListenerTouchOneByOne* touchListener = EventListenerTouchOneByOne::create();
 	touchListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
@@ -114,6 +119,8 @@ void HelloWorld::update(float dt)
 	_generator->render();
 	if (!_hero->jumping())
 		_generator->collideLasersVsHero();
+
+	setScore(_score + dt);
 }
 
 void HelloWorld::menuCloseCallback(Ref* pSender)
@@ -131,4 +138,10 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     //_eventDispatcher->dispatchEvent(&customEndEvent);
     
     
+}
+
+void HelloWorld::setScore(float score)
+{
+	_score = score;
+	_gui->setScore(_score);
 }
