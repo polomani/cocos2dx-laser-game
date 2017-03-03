@@ -9,8 +9,6 @@ private:
 	float _x, _y, _dx, _dy, _tox, _toy;
 	cocos2d::Vec2 _direction;
 	float _angle;
-
-	float _alpha, _r, _g, _b;
 public:
 	Laser(float x, float y, float tox, float toy, float radius, float angle);
 	~Laser();
@@ -27,7 +25,6 @@ public:
 	float dy() const { return _dy; };
 	void x(float x) { _x = x; };
 	void y(float y) { _y = y; };
-	cocos2d::GLProgramState* getState(cocos2d::GLProgram* program);
 };
 
 #endif // __LASER_H__

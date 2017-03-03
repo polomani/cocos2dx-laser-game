@@ -14,10 +14,12 @@ private:
 	std::time_t _lastLaserTime;
 	std::vector<Laser> _lasers;
 	void render(Laser& laser);
+	
 	cocos2d::GLProgram* _shaderProgram;
+	cocos2d::Vec4 _lazerColor;
 
-	static const char* vertexShader;
-	static const char* fragmentShader;
+	void generateLazerColor();
+
 public:
 	// constructor will be invoked by create function
 	Generator();

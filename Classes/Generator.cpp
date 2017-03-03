@@ -7,6 +7,12 @@
 
 USING_NS_CC;
 
+float random(int min, int max)
+{
+	return (float)min + (rand() % (int)(max - min + 1));
+}
+
+
 Generator::Generator()
 	:
 	_width(Director::getInstance()->getVisibleSize().width),
@@ -18,7 +24,9 @@ Generator::Generator()
 	_velocity(120),
 	_lastLaserTime(0),
 	_shaderProgram(ShaderUtil::loadShader("lazer_shader", "shaders/lazer", "shaders/lazer"))
-{ }
+{
+	generateLazerColor();
+}
 
 bool Generator::init()
 {
@@ -31,6 +39,7 @@ bool Generator::init()
 		return false;
 
 	setGLProgram(_shaderProgram);
+	_shaderProgram->use();
 
 	// initialize was successful
 	return true;
@@ -49,6 +58,8 @@ void Generator::addLaser()
 	_lasers.push_back(laser);
 	
 	_lastLaserTime = std::time(0);
+
+	generateLazerColor();
 }
 
 void Generator::step(float dt)
@@ -59,6 +70,8 @@ void Generator::step(float dt)
 		if (i->step(dt, _velocity))
 			newLasers.push_back(*i);
 
+	if (_lasers.size() != newLasers.size())
+		generateLazerColor();
 	_lasers = newLasers;
 }
 
@@ -98,7 +111,15 @@ void Generator::render(Laser& l)
 						  cocos2d::Vec2(l.ax(), l.ay()), 
 						  3.0f,
 						  cocos2d::Color4F::RED);
-	
-	setGLProgramState(l.getState(_shaderProgram));
-	_shaderProgram->use();
+}
+
+void Generator::generateLazerColor()
+{
+	cocos2d::Vec4 color = Vec4(1 / random(1, 10), 1 / random(1, 10), 1 / random(1, 10), 1 / random(1, 4));
+
+	cocos2d::GLProgramState* state = cocos2d::GLProgramState::getOrCreateWithGLProgram(_shaderProgram);
+
+	// name of paramert in lazer vertex shader
+	state->setUniformVec4("lazer_color", color);
+	setGLProgramState(state);
 }

@@ -1,8 +1,6 @@
 #include "GameGUI.h"
 
 
-
-
 bool GameGUI::init()
 {
 	if (!Layer::init())
@@ -23,6 +21,6 @@ bool GameGUI::init()
 
 void GameGUI::setScore(int score)
 {
-	_score->setString(std::to_string(score));
+	_score->setString(score + "");
 }
 
