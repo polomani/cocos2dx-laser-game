@@ -180,6 +180,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ResourceCompile Include="game.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\shaders\lazer.frag" />
+    <None Include="..\Resources\shaders\lazer.vert" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

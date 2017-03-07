@@ -10,6 +10,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{2c4d82ea-1b8b-46e6-837b-6182228148d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -73,5 +76,13 @@
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\shaders\lazer.frag">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="..\Resources\shaders\lazer.vert">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -1,5 +1,8 @@
 #include "ShaderUtil.h"
 
+#define FRAGMENT_EXTENSION ".frag"
+#define VERTEX_EXTENSION ".vert"
+
 GLProgram* ShaderUtil::loadShader(const std::string& name, const std::string& path)
 {
 	auto glCache = GLProgramCache::getInstance();
@@ -8,8 +11,8 @@ GLProgram* ShaderUtil::loadShader(const std::string& name, const std::string& pa
 	{
 		auto fs = FileUtils::getInstance();
 
-		auto fragPath = fs->fullPathForFilename(path + ".fsh");
-		auto vertPath = fs->fullPathForFilename(path + ".vsh");
+		auto fragPath = fs->fullPathForFilename(path + FRAGMENT_EXTENSION);
+		auto vertPath = fs->fullPathForFilename(path + VERTEX_EXTENSION);
 
 		std::string fragmentSource = fs->getStringFromFile(fragPath);
 		std::string vertexSource = fs->getStringFromFile(vertPath);
@@ -33,8 +36,8 @@ GLProgram* ShaderUtil::loadShader(const std::string& name, const std::string& ve
 	{
 		auto fs = FileUtils::getInstance();
 
-		auto fragPath = fs->fullPathForFilename(vertexShader + ".fsh");
-		auto vertPath = fs->fullPathForFilename(fragmentShader + ".vsh");
+		auto fragPath = fs->fullPathForFilename(vertexShader + FRAGMENT_EXTENSION);
+		auto vertPath = fs->fullPathForFilename(fragmentShader + VERTEX_EXTENSION);
 
 		std::string fragmentSource = fs->getStringFromFile(fragPath);
 		std::string vertexSource = fs->getStringFromFile(vertPath);
