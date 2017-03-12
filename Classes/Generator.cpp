@@ -85,7 +85,7 @@ void Generator::collideLasersVsHero()
 	PhysicsRayCastCallbackFunc hit = [this](PhysicsWorld& world,
 		const PhysicsRayCastInfo& info, void* data)->bool
 	{
-		//gameOver()
+		this->setLaserHitHero(true);
 		return true;
 	};
 
@@ -122,4 +122,9 @@ void Generator::generateLazerColor()
 	// name of paramert in lazer vertex shader
 	state->setUniformVec4("lazer_color", color);
 	setGLProgramState(state);
+}
+
+void Generator::cleanLasers()
+{
+	_lasers.clear();
 }

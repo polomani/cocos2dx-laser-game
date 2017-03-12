@@ -72,6 +72,10 @@ bool HelloWorld::init()
 	this->addChild(_gui, 3);
 	setScore(0);
 
+	_gameOverMenu = GameOverMenu::create();
+	_gameOverMenu->setGameScene(this);
+	this->addChild(_gameOverMenu, 10);
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	EventListenerTouchOneByOne* touchListener = EventListenerTouchOneByOne::create();
 	touchListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
@@ -91,12 +95,20 @@ bool HelloWorld::init()
 
 void HelloWorld::onMouseDown(cocos2d::Event *event)
 {
+	if (!isRunning())
+	{
+		return;
+	}
 	EventMouse* e = (EventMouse*)event;
 	_hero->jump(e->getLocationInView());
 }
 
 bool HelloWorld::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
+	if (!isRunning())
+	{
+		return true;
+	}
 	cocos2d::Vec2 to = touch->getLocationInView();
 	reverse(to);
 	_hero->jump(to);
@@ -112,6 +124,17 @@ void HelloWorld::reverse(cocos2d::Vec2& vec)
 
 void HelloWorld::update(float dt)
 {
+	if (!isRunning()) 
+	{
+		return;
+	}
+
+	if (_generator->islaserHitHero())
+	{
+		_gameOverMenu->show();
+		this->_running = false;
+	}
+
 	if (_generator->numLasers() < 10 && _generator->timeFromLastLaser()>=1)
 		_generator->addLaser();
 
@@ -144,4 +167,19 @@ void HelloWorld::setScore(float score)
 {
 	_score = score;
 	_gui->setScore(_score);
+}
+
+bool HelloWorld::isRunning()
+{
+	return _running;
+}
+
+void HelloWorld::setRunning(bool b)
+{
+	_generator->cleanLasers();
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	_hero->jump(Vec2(visibleSize.width/2, visibleSize.height/2));
+	_running = b;
+	_generator->setLaserHitHero(!b);
+	setScore(0);
 }

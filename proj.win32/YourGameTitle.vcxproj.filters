@@ -13,6 +13,9 @@
     <Filter Include="shaders">
       <UniqueIdentifier>{2c4d82ea-1b8b-46e6-837b-6182228148d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\gui">
+      <UniqueIdentifier>{2c04f324-c9b6-4b03-83e2-73f827902968}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -40,7 +43,10 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GameGUI.cpp">
-      <Filter>src</Filter>
+      <Filter>src\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameOverMenu.cpp">
+      <Filter>src\gui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -69,7 +75,10 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameGUI.h">
-      <Filter>src</Filter>
+      <Filter>src\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameOverMenu.h">
+      <Filter>src\gui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
