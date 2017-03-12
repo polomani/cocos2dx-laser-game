@@ -147,7 +147,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\GameGUI.cpp" />
     <ClCompile Include="..\Classes\Generator.cpp" />
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\GameScene.cpp" />
     <ClCompile Include="..\Classes\Hero.cpp" />
     <ClCompile Include="..\Classes\Laser.cpp" />
     <ClCompile Include="..\Classes\PhysicsShapeCache.cpp" />
@@ -159,7 +159,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\GameGUI.h" />
     <ClInclude Include="..\Classes\Generator.h" />
-    <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\GameScene.h" />
     <ClInclude Include="..\Classes\Hero.h" />
     <ClInclude Include="..\Classes\Laser.h" />
     <ClInclude Include="..\Classes\PhysicsShapeCache.h" />

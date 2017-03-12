@@ -1,4 +1,4 @@
-#include "HelloWorldScene.h"
+#include "GameScene.h"
 #include "SimpleAudioEngine.h"
 #include "PhysicsShapeCache.h"
 #include "Laser.h"
@@ -11,13 +11,13 @@
 #define PHYSICS_PLIST "physics.json.plist"
 USING_NS_CC;
 
-Scene* HelloWorld::createScene()
+Scene* GameScene::createScene()
 {
     // 'scene' is an autorelease object
 	auto scene = Scene::createWithPhysics();
     
     // 'layer' is an autorelease object
-    auto layer = HelloWorld::create();
+	auto layer = GameScene::create();
 
     // add layer as a child to scene
     scene->addChild(layer);
@@ -27,7 +27,7 @@ Scene* HelloWorld::createScene()
 }
 
 // on "init" you need to initialize your instance
-bool HelloWorld::init()
+bool GameScene::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -47,7 +47,7 @@ bool HelloWorld::init()
     auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
                                            "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+										   CC_CALLBACK_1(GameScene::menuCloseCallback, this));
     
     closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
                                 origin.y + closeItem->getContentSize().height/2));
@@ -78,13 +78,13 @@ bool HelloWorld::init()
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	EventListenerTouchOneByOne* touchListener = EventListenerTouchOneByOne::create();
-	touchListener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
+	touchListener->onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 #endif
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 	EventListenerMouse* mouseListener = EventListenerMouse::create();
-	mouseListener->onMouseDown = CC_CALLBACK_1(HelloWorld::onMouseDown, this);
+	mouseListener->onMouseDown = CC_CALLBACK_1(GameScene::onMouseDown, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
 #endif
 
@@ -93,7 +93,7 @@ bool HelloWorld::init()
     return true;
 }
 
-void HelloWorld::onMouseDown(cocos2d::Event *event)
+void GameScene::onMouseDown(cocos2d::Event *event)
 {
 	if (!isRunning())
 	{
@@ -103,7 +103,7 @@ void HelloWorld::onMouseDown(cocos2d::Event *event)
 	_hero->jump(e->getLocationInView());
 }
 
-bool HelloWorld::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
+bool GameScene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	if (!isRunning())
 	{
@@ -116,13 +116,13 @@ bool HelloWorld::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 	return true;
 }
 
-void HelloWorld::reverse(cocos2d::Vec2& vec)
+void GameScene::reverse(cocos2d::Vec2& vec)
 {
 	Size size = Director::getInstance()->getVisibleSize();
 	vec.y = size.height - vec.y;
 }
 
-void HelloWorld::update(float dt)
+void GameScene::update(float dt)
 {
 	if (!isRunning()) 
 	{
@@ -146,7 +146,7 @@ void HelloWorld::update(float dt)
 	setScore(_score + dt);
 }
 
-void HelloWorld::menuCloseCallback(Ref* pSender)
+void GameScene::menuCloseCallback(Ref* pSender)
 {
     //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->end();
@@ -163,18 +163,18 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     
 }
 
-void HelloWorld::setScore(float score)
+void GameScene::setScore(float score)
 {
 	_score = score;
 	_gui->setScore(_score);
 }
 
-bool HelloWorld::isRunning()
+bool GameScene::isRunning()
 {
 	return _running;
 }
 
-void HelloWorld::setRunning(bool b)
+void GameScene::setRunning(bool b)
 {
 	_generator->cleanLasers();
 	auto visibleSize = Director::getInstance()->getVisibleSize();
