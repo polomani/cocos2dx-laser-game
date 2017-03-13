@@ -20,7 +20,7 @@ Scene* GameScene::createScene()
 	auto layer = GameScene::create();
 
     // add layer as a child to scene
-    scene->addChild(layer);
+    scene->addChild(layer, 0, "GameScene");
 
     // return the scene
     return scene;
@@ -71,10 +71,6 @@ bool GameScene::init()
 	_gui = GameGUI::create();
 	this->addChild(_gui, 3);
 	setScore(0);
-
-	_gameOverMenu = GameOverMenu::create();
-	_gameOverMenu->setGameScene(this);
-	this->addChild(_gameOverMenu, 10);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	EventListenerTouchOneByOne* touchListener = EventListenerTouchOneByOne::create();
@@ -131,7 +127,7 @@ void GameScene::update(float dt)
 
 	if (_generator->islaserHitHero())
 	{
-		_gameOverMenu->show();
+		_gui->showGameOverMenu();
 		this->_running = false;
 	}
 

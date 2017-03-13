@@ -5,8 +5,6 @@
 class GameScene;
 class GameOverMenu : public cocos2d::LayerColor
 {
-private:
-	GameScene* _gameScene;
 public:
 	CREATE_FUNC(GameOverMenu);
 
@@ -15,8 +13,6 @@ public:
 	virtual bool init();
 
 	void show();
-
-	void setGameScene(GameScene* h) { _gameScene = h; };
 
 	void menuRestartClick(cocos2d::Ref* pSender);
 };

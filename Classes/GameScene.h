@@ -22,8 +22,6 @@ private:
 
 	Hero* _hero;
 
-	GameOverMenu* _gameOverMenu;
-
 	bool _running = true;
 public:
 

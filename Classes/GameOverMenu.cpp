@@ -1,4 +1,3 @@
-#include "GameOverMenu.h"
 
 #include "GameScene.h"
 
@@ -25,6 +24,8 @@ bool GameOverMenu::init()
 	Label* _label = Label::createWithTTF("Game Over", "fonts/Marker Felt.ttf", 40);
 	_label->setPosition(Vec2::ZERO);
 	MenuItemLabel* menuLabel = MenuItemLabel::create(_label);
+	menuLabel->setDisabledColor(Color3B::WHITE);
+	menuLabel->setEnabled(false);
 
 	auto closeItem = MenuItemImage::create(
 		"restart-button.png",
@@ -57,6 +58,7 @@ void GameOverMenu::show()
 
 void GameOverMenu::menuRestartClick(Ref* pSender)
 {
-	_gameScene->setRunning(true);
+	GameScene* scene = (GameScene*) Director::getInstance()->getRunningScene()->getChildByName("GameScene");
+	scene->setRunning(true);
 	setVisible(false);
 }

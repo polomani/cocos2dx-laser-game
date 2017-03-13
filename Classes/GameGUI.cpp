@@ -1,4 +1,8 @@
 #include "GameGUI.h"
+#include <sstream>
+
+#define SSTR( x ) static_cast< std::ostringstream & >( \
+        ( std::ostringstream() << std::dec << x ) ).str()
 
 
 bool GameGUI::init()
@@ -16,11 +20,19 @@ bool GameGUI::init()
 		origin.y + visibleSize.height - _score->getBoundingBox().size.height));
 	this->addChild(_score, 1);
 
+	_gameOverMenu = GameOverMenu::create();
+	this->addChild(_gameOverMenu, 2);
+
 	return true;
 }
 
 void GameGUI::setScore(int score)
 {
-	_score->setString(score + "");
+	_score->setString(SSTR(score));
+}
+
+void GameGUI::showGameOverMenu()
+{
+	_gameOverMenu->show();
 }
 
