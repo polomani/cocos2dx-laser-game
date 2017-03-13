@@ -1,5 +1,5 @@
-
 #include "GameScene.h"
+#include "AudioUtil.h"
 
 using namespace cocos2d;
 
@@ -61,4 +61,5 @@ void GameOverMenu::menuRestartClick(Ref* pSender)
 	GameScene* scene = (GameScene*) Director::getInstance()->getRunningScene()->getChildByName("GameScene");
 	scene->setRunning(true);
 	setVisible(false);
+	AudioUtil::startLazerMoveBackground();
 }
