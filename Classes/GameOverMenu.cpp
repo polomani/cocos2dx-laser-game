@@ -21,7 +21,7 @@ bool GameOverMenu::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	int midlX = origin.x + visibleSize.width / 2;
 
-	Label* _label = Label::createWithTTF("Game Over", "fonts/Marker Felt.ttf", 40);
+	Label* _label = Label::createWithBMFont("fonts/font.fnt", "Game Over");
 	_label->setPosition(Vec2::ZERO);
 	MenuItemLabel* menuLabel = MenuItemLabel::create(_label);
 	menuLabel->setDisabledColor(Color3B::WHITE);

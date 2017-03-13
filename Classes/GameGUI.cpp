@@ -15,9 +15,9 @@ bool GameGUI::init()
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	_score = Label::createWithTTF("0", "fonts/Marker Felt.ttf", 32);
+	_score = Label::createWithBMFont("fonts/font.fnt", "0");
 	_score->setPosition(Point(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height - _score->getBoundingBox().size.height));
+		origin.y + visibleSize.height - _score->getBoundingBox().size.height/2));
 	this->addChild(_score, 1);
 
 	_gameOverMenu = GameOverMenu::create();
