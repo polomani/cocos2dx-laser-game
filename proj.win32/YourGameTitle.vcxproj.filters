@@ -39,14 +39,17 @@
     <ClCompile Include="..\Classes\PhysicsShapeCache.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameGUI.cpp">
-      <Filter>src\gui</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GameOverMenu.cpp">
       <Filter>src\gui</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GameScene.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameGUIFacade.cpp">
+      <Filter>src\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HUD.cpp">
+      <Filter>src\gui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,14 +74,17 @@
     <ClInclude Include="..\Classes\PhysicsShapeCache.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GameGUI.h">
-      <Filter>src\gui</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GameOverMenu.h">
       <Filter>src\gui</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameScene.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameGUIFacade.h">
+      <Filter>src\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HUD.h">
+      <Filter>src\gui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

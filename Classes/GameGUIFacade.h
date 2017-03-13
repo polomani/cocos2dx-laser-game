@@ -3,17 +3,17 @@
 
 #include "cocos2d.h"
 #include "GameOverMenu.h"
+#include "HUD.h"
 
-USING_NS_CC;
+using namespace cocos2d;
 
-class GameGUI : public Layer
+class GameGUIFacade : public Layer
 {
 private:
-	Label* _score;
+	HudMenu* _hudMenu;
 	GameOverMenu* _gameOverMenu;
 public:	
-
-	CREATE_FUNC(GameGUI);
+	CREATE_FUNC(GameGUIFacade);
 	virtual bool init();
 
 	void showGameOverMenu();

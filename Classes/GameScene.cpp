@@ -2,8 +2,6 @@
 #include "SimpleAudioEngine.h"
 #include "PhysicsShapeCache.h"
 #include "Laser.h"
-#include "Hero.h"
-#include "GameGUI.h"
 #include "Math.h"
 #include "IOS"
 
@@ -68,7 +66,7 @@ bool GameScene::init()
 	_generator->addLaser();
 	this->addChild(_generator, 0);
 
-	_gui = GameGUI::create();
+	_gui = GameGUIFacade::create();
 	this->addChild(_gui, 3);
 	setScore(0);
 

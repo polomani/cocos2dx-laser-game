@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include "Generator.h"
-#include "GameGUI.h"
+#include "GameGUIFacade.h"
 #include "Hero.h"
 #include "GameOverMenu.h"
 
@@ -16,7 +16,7 @@ private:
 	static void reverse(cocos2d::Vec2&);
 	float _score;
 
-	GameGUI* _gui;
+	GameGUIFacade* _gui;
 
 	Generator* _generator;
 
