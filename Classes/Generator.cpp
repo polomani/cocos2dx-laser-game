@@ -4,6 +4,7 @@
 #include <ctime>
 #include "cocos2d.h"
 #include "ShaderUtil.h"
+#include "AudioUtil.h"
 
 USING_NS_CC;
 
@@ -86,6 +87,9 @@ void Generator::collideLasersVsHero()
 		const PhysicsRayCastInfo& info, void* data)->bool
 	{
 		this->setLaserHitHero(true);
+		AudioUtil::laserHitEffect();
+		AudioUtil::endLazerMoveBackground();
+		AudioUtil::gameOverPlayground();
 		return true;
 	};
 

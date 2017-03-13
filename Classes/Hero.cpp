@@ -1,6 +1,7 @@
 #include "Hero.h"
 #include "PhysicsShapeCache.h"
 #include "cocos2d.h"
+#include "AudioUtil.h"
 
 USING_NS_CC;
 
@@ -33,6 +34,7 @@ void Hero::jump(cocos2d::Vec2 to)
 	if (jumpInProcess)
 		return;
 
+	AudioUtil::jumpEffect();
 	jumpInProcess = true;
 
 	cocos2d::Vec2 movement = Vec2(to.y - this->getPositionY(),

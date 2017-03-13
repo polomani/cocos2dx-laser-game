@@ -51,6 +51,9 @@
     <ClCompile Include="..\Classes\HUD.cpp">
       <Filter>src\gui</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\AudioUtil.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\HUD.h">
       <Filter>src\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AudioUtil.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

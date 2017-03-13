@@ -4,6 +4,7 @@
 #include "Laser.h"
 #include "Math.h"
 #include "IOS"
+#include "AudioUtil.h"
 
 #define COCOS2D_DEBUG 1
 #define PHYSICS_PLIST "physics.json.plist"
@@ -84,6 +85,9 @@ bool GameScene::init()
 
 	// to run onUpdate() method
 	this->scheduleUpdate();
+
+	AudioUtil::startLazerMoveBackground();
+
     return true;
 }
 
