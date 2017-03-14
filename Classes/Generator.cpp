@@ -23,7 +23,7 @@ Generator::Generator()
 	_radius(sqrt(_width*_width + _height*_height)),
 	_diameter(_radius * 2),
 	_velocity(120),
-	_lastLaserTime(0),
+	_lastLaserTime(1),
 	_shaderProgram(ShaderUtil::loadShader("lazer_shader", "shaders/lazer", "shaders/lazer"))
 {
 	generateLazerColor();

@@ -16,6 +16,9 @@
     <Filter Include="src\gui">
       <UniqueIdentifier>{2c04f324-c9b6-4b03-83e2-73f827902968}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\scenes">
+      <UniqueIdentifier>{5a262c1e-0c96-41d7-8748-af0675c78a18}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,9 +45,6 @@
     <ClCompile Include="..\Classes\GameOverMenu.cpp">
       <Filter>src\gui</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GameGUIFacade.cpp">
       <Filter>src\gui</Filter>
     </ClCompile>
@@ -53,6 +53,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\AudioUtil.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainMenuScene.cpp">
+      <Filter>src\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameScene.cpp">
+      <Filter>src\scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,9 +86,6 @@
     <ClInclude Include="..\Classes\GameOverMenu.h">
       <Filter>src\gui</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GameScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GameGUIFacade.h">
       <Filter>src\gui</Filter>
     </ClInclude>
@@ -91,6 +94,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\AudioUtil.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainMenuScene.h">
+      <Filter>src\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameScene.h">
+      <Filter>src\scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
