@@ -14,7 +14,6 @@ public:
 	virtual bool init();
 	virtual void update(float);
 	CREATE_FUNC(MainMenuScene);
-	virtual ~MainMenuScene(){ CC_SAFE_DELETE(_generator); };
 	void play(Ref*);
 };
 
