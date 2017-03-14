@@ -52,6 +52,7 @@ bool MainMenuScene::init()
 	//add first lasers
 	for (float dt = 0; dt < 5; dt++)
 		update(dt);
+
 	this->scheduleUpdate();
 
 	return true;
@@ -69,8 +70,6 @@ void MainMenuScene::update(float dt)
 void MainMenuScene::play(Ref* ref)
 {
 	auto nextScene = GameScene::createScene();
-	Director::getInstance()->replaceScene(nextScene);
-	//cause crash
-	//auto transition = TransitionScene::create(1.0, nextScene);
-	//Director::getInstance()->replaceScene(transition);
+	auto transition = TransitionFade::create(0.5, nextScene);
+	Director::getInstance()->replaceScene(transition);
 }

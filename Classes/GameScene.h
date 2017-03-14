@@ -35,6 +35,7 @@ public:
 
 	void onMouseDown(cocos2d::Event *event);
 	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onEnterTransitionDidFinish();
     
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);

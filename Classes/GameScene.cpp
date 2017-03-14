@@ -83,8 +83,6 @@ bool GameScene::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
 #endif
 
-	// to run onUpdate() method
-	this->scheduleUpdate();
 
 	AudioUtil::startLazerMoveBackground();
 
@@ -180,4 +178,11 @@ void GameScene::setRunning(bool b)
 	_running = b;
 	_generator->setLaserHitHero(!b);
 	setScore(0);
+}
+
+void GameScene::onEnterTransitionDidFinish()
+{
+	Layer::onEnterTransitionDidFinish();
+	// to run onUpdate() method
+	this->scheduleUpdate();
 }
