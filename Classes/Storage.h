@@ -19,8 +19,6 @@ public:
 	static double getd(const char*);
 	static void setd(const char*, double d);
 private:
-	static UserDefault* _default;
-
 	CC_DISALLOW_COPY_AND_ASSIGN(Storage)
 };
 
