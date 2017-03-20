@@ -18,8 +18,12 @@ public:
 
 	static void startLazerMoveBackground();
 	static void endLazerMoveBackground();
+
+	static void mute();
+	static void unmute();
 private:
 	static bool _init;
+	static bool _mute;
 	static void init();
 	CC_DISALLOW_COPY_AND_ASSIGN(AudioUtil)
 };

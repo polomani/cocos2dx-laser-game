@@ -1,6 +1,11 @@
 #include "MainMenuScene.h"
 #include "GameScene.h"
+#include "Storage.h"
+#include "AudioUtil.h"
 
+#define MUTE "mute"
+#define MUTE_BUTTON "mute.png"
+#define UNMUTE_BUTTON "unmute.jpg"
 
 Scene* MainMenuScene::createScene()
 {
@@ -37,9 +42,32 @@ bool MainMenuScene::init()
 	playItem->setPosition(Vec2(0, -100));
 	playItem->setScale(0.5);
 
+	bool mute = Storage::getb(MUTE);
+	char* button;
+
+	if (mute)
+	{
+		button = MUTE_BUTTON;
+		AudioUtil::mute();
+	}
+	else
+	{
+		button = UNMUTE_BUTTON;
+		AudioUtil::unmute();
+	}
+
+	_soundButton = MenuItemImage::create(
+		button,
+		button,
+		CC_CALLBACK_1(MainMenuScene::sound, this)
+		);
+	_soundButton->setPosition(Vec2(0, -200));
+	_soundButton->setScale(0.5);
+
 	Vector<MenuItem*> menuItems;
 	menuItems.pushBack(playItem);
 	menuItems.pushBack(menuLabel);
+	menuItems.pushBack(_soundButton);
 
 	auto menu = Menu::createWithArray(menuItems);
 	menu->setPosition(Point(midlX, origin.y + visibleSize.height / 2 + 100));
@@ -54,7 +82,7 @@ bool MainMenuScene::init()
 		update(dt);
 
 	this->scheduleUpdate();
-
+	AudioUtil::startLazerMoveBackground();
 	return true;
 }
 
@@ -72,4 +100,26 @@ void MainMenuScene::play(Ref* ref)
 	auto nextScene = GameScene::createScene();
 	auto transition = TransitionFade::create(0.5, nextScene);
 	Director::getInstance()->replaceScene(transition);
+}
+
+void MainMenuScene::sound(Ref* ref)
+{
+	bool mute = !Storage::getb(MUTE);
+	char* button;
+
+	if (mute)
+	{
+		button = MUTE_BUTTON;
+		AudioUtil::mute();
+	}
+	else
+	{
+		button = UNMUTE_BUTTON;
+		AudioUtil::unmute();
+	}
+
+	_soundButton->setNormalImage(Sprite::create(button));
+	_soundButton->setSelectedImage(Sprite::create(button));
+
+	Storage::setb(MUTE, mute);
 }

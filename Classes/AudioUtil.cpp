@@ -26,6 +26,8 @@ using namespace CocosDenshion;
 
 
 bool AudioUtil::_init = false;
+bool AudioUtil::_mute = false;
+
 
 void AudioUtil::init()
 {
@@ -45,6 +47,10 @@ void AudioUtil::jumpEffect()
 	init();
 	SimpleAudioEngine* engine = SimpleAudioEngine::getInstance();
 	engine->playEffect(JUMP_EFFECT);
+	if (_mute)
+	{
+		mute();
+	}
 }
 
 void AudioUtil::laserHitEffect()
@@ -52,6 +58,10 @@ void AudioUtil::laserHitEffect()
 	init();
 	SimpleAudioEngine* engine = SimpleAudioEngine::getInstance();
 	engine->playEffect(LASER_HIT_EFFECT);
+	if (_mute)
+	{
+		mute();
+	}
 }
 
 void AudioUtil::gameOverPlayground()
@@ -59,6 +69,10 @@ void AudioUtil::gameOverPlayground()
 	init();
 	SimpleAudioEngine* engine = SimpleAudioEngine::getInstance();
 	engine->playBackgroundMusic(GAME_OVER);
+	if (_mute)
+	{
+		mute();
+	}
 }
 
 void AudioUtil::pauseBackgroundMusic()
@@ -78,10 +92,30 @@ void AudioUtil::startLazerMoveBackground()
 	init();
 	SimpleAudioEngine* engine = SimpleAudioEngine::getInstance();
 	engine->playBackgroundMusic(LASER_MOVE_BACKGROUND, true);
+	if (_mute)
+	{
+		mute();
+	}
 }
 
 void AudioUtil::endLazerMoveBackground()
 {
 	SimpleAudioEngine* engine = SimpleAudioEngine::getInstance();
 	engine->stopBackgroundMusic();
+}
+
+void AudioUtil::mute()
+{
+	_mute = true;
+	SimpleAudioEngine* engine = SimpleAudioEngine::sharedEngine();
+	engine->pauseAllEffects();
+	engine->pauseBackgroundMusic();
+}
+
+void AudioUtil::unmute()
+{
+	_mute = false;
+	SimpleAudioEngine* engine = SimpleAudioEngine::sharedEngine();
+	engine->resumeAllEffects();
+	engine->resumeBackgroundMusic();
 }

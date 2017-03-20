@@ -29,3 +29,12 @@ void Storage::sets(const char* key, string& value)
 {
 	UserDefault::getInstance()->setStringForKey(key, value);
 }
+
+bool Storage::getb(const char* key)
+{
+	return UserDefault::getInstance()->getBoolForKey(key);
+}
+void Storage::setb(const char* key, bool b)
+{
+	UserDefault::getInstance()->setBoolForKey(key, b);
+}
