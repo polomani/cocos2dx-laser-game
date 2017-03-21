@@ -100,7 +100,7 @@ void GameScene::update(float dt)
 
 	if (_generator->islaserHitHero())
 	{
-		_gui->showGameOverMenu();
+		_gui->showGameOverMenu(_score);
 		this->_running = false;
 	}
 

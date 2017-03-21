@@ -20,11 +20,10 @@ bool GameGUIFacade::init()
 void GameGUIFacade::setScore(int score)
 {
 	_hudMenu->setScore(score);
-	_gameOverMenu->currentPoints(score);
 }
 
-void GameGUIFacade::showGameOverMenu()
+void GameGUIFacade::showGameOverMenu(int score)
 {
-	_gameOverMenu->show();
+	_gameOverMenu->show(score);
 }
 

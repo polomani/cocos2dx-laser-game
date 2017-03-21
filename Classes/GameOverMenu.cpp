@@ -7,8 +7,7 @@ using namespace cocos2d;
 #define SSTR( x ) static_cast< std::ostringstream & >( \
         ( std::ostringstream() << std::dec << x ) ).str()
 
-GameOverMenu::GameOverMenu():
-_currentPoints(0)
+GameOverMenu::GameOverMenu()
 {
 	// by default menu should be hidden
 	setVisible(false);
@@ -70,25 +69,21 @@ bool GameOverMenu::init()
 	return true;
 }
 
-void GameOverMenu::show()
+void GameOverMenu::show(int score)
 {
-	_currentPointsLabel->setString("Current points is: " + SSTR(_currentPoints));
+	_currentPointsLabel->setString("Score: " + SSTR(score));
 
 	int record = Storage::geti("record");
-	_recordLabel->setString("Your record is: " + SSTR(record));
+	_recordLabel->setString("Best: " + SSTR(record));
 	_recordLabel->setVisible(record > 0);
 
-	if (_currentPoints > record)
+	if (score > record)
 	{
-		Storage::seti("record", _currentPoints);
+		Storage::seti("record", score);
+		_recordLabel->setString("NEW Best: " + SSTR(record));
 	}
 
 	setVisible(true);
-}
-
-void GameOverMenu::currentPoints(int points)
-{
-	_currentPoints = points;
 }
 
 void GameOverMenu::menuRestartClick(Ref* pSender)

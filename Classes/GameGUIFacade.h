@@ -16,7 +16,7 @@ public:
 	CREATE_FUNC(GameGUIFacade);
 	virtual bool init();
 
-	void showGameOverMenu();
+	void showGameOverMenu(int);
 	void setScore(int);
 };
 
