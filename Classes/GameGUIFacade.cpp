@@ -1,5 +1,6 @@
 #include "GameGUIFacade.h"
 #include "PauseWindow.h"
+#include "GameScene.h"
 #include <sstream>
 
 #define COCOS2D_DEBUG 1
@@ -33,6 +34,11 @@ void GameGUIFacade::showGameOverMenu(int score)
 	_gameOverMenu->show(score);
 }
 
+void GameGUIFacade::showPauseWindow()
+{
+	_pauseWindow->show();
+}
+
 void GameGUIFacade::showPauseWindowClick(Event* event)
 {
 	EventMouse* mouseEvent = dynamic_cast<EventMouse*>(event);
@@ -46,7 +52,9 @@ void GameGUIFacade::showPauseWindowClick(Event* event)
 bool GameGUIFacade::showPauseWindowTouch(Touch* touch, Event* event)
 {
 	auto bounds = event->getCurrentTarget()->getBoundingBox();
-	if (bounds.containsPoint(touch->getLocationInView())) {
+	Vec2 vec = touch->getLocationInView();
+	GameScene::reverse(vec);
+	if (bounds.containsPoint(vec)) {
 		_pauseWindow->show();
 		event->stopPropagation();
 	}

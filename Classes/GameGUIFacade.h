@@ -20,6 +20,7 @@ public:
 
 	void showGameOverMenu(int);
 	void setScore(int);
+	void showPauseWindow();
 	void showPauseWindowClick(Event* event);
 	bool showPauseWindowTouch(Touch* touch, Event* event);
 	void closePauseWindow(Event* event);

@@ -13,7 +13,6 @@ private:
 	/*
 	for some devices position should be reverse by axis Oy
 	*/
-	static void reverse(cocos2d::Vec2&);
 	float _score;
 
 	GameGUIFacade* _gui;
@@ -46,6 +45,7 @@ public:
 	GameGUIFacade* getGui() { return _gui; };
 	bool isRunning();
 	void setRunning(bool b);
+	static void reverse(cocos2d::Vec2&);
 };
 
 #endif // __GAME_SCENE_H__

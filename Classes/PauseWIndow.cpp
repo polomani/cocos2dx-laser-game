@@ -24,6 +24,13 @@ bool PauseWindow::init() {
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
 #endif
 
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	auto label = Label::createWithBMFont("fonts/font.fnt", "Tap to continue");
+	label->setPosition(Point(origin.x + visibleSize.width / 2,
+		origin.y + visibleSize.height/2));
+	this->addChild(label, 1);
+
 	return true;
 }
 

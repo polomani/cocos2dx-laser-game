@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "MainMenuScene.h"
 #include "AudioUtil.h"
+#include "GameScene.h"
 
 #define COCOS2D_DEBUG 1
 
@@ -87,6 +88,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
 }
 
 void AppDelegate::applicationDidEnterBackground() {
+	GameScene* gameScene = dynamic_cast<GameScene*> (Director::getInstance()->getRunningScene()->getChildByName("GameScene"));
+	if (gameScene && gameScene->isRunning()) {
+		gameScene->getGui()->showPauseWindow();
+	}
     Director::getInstance()->stopAnimation();
     AudioUtil::pauseBackgroundMusic();
 }
