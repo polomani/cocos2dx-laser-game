@@ -153,6 +153,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\HUD.cpp" />
     <ClCompile Include="..\Classes\Laser.cpp" />
     <ClCompile Include="..\Classes\MainMenuScene.cpp" />
+    <ClCompile Include="..\Classes\PauseWIndow.cpp" />
     <ClCompile Include="..\Classes\PhysicsShapeCache.cpp" />
     <ClCompile Include="..\Classes\ShaderUtil.cpp" />
     <ClCompile Include="..\Classes\GameOverMenu.cpp" />
@@ -169,6 +170,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\HUD.h" />
     <ClInclude Include="..\Classes\Laser.h" />
     <ClInclude Include="..\Classes\MainMenuScene.h" />
+    <ClInclude Include="..\Classes\PauseWindow.h" />
     <ClInclude Include="..\Classes\PhysicsShapeCache.h" />
     <ClInclude Include="..\Classes\ShaderUtil.h" />
     <ClInclude Include="..\Classes\GameOverMenu.h" />

@@ -2,6 +2,8 @@
 #include "MainMenuScene.h"
 #include "AudioUtil.h"
 
+#define COCOS2D_DEBUG 1
+
 USING_NS_CC;
 
 static cocos2d::Size designResolutionSize = cocos2d::Size(800, 600);

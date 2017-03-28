@@ -66,6 +66,9 @@
     <ClCompile Include="..\Classes\AudioUtil.cpp">
       <Filter>src\utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\PauseWIndow.cpp">
+      <Filter>src\gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\AudioUtil.h">
       <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PauseWindow.h">
+      <Filter>src\gui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

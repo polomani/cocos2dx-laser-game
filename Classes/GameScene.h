@@ -43,6 +43,7 @@ public:
     // implement the "static create()" method manually
 	CREATE_FUNC(GameScene);
 
+	GameGUIFacade* getGui() { return _gui; };
 	bool isRunning();
 	void setRunning(bool b);
 };

@@ -85,6 +85,10 @@ void AudioUtil::resumeBackgroundMusic()
 {
 	SimpleAudioEngine* engine = SimpleAudioEngine::getInstance();
 	engine->resumeBackgroundMusic();
+	if (_mute)
+	{
+		mute();
+	}
 }
 
 void AudioUtil::startLazerMoveBackground()
