@@ -10,21 +10,10 @@ class HudMenu : public Layer
 private:
 	Label* _score;
 public:
-	
-	static HudMenu* create(GameGUIFacade* gui) {
-		HudMenu* ret = new(std::nothrow) HudMenu();
-		if (ret && ret->init(gui)) { 
-			ret->autorelease();
-			return ret;
-		}
-		else {
-			delete ret;
-			ret = nullptr;
-			return nullptr;
-		}
-	}
 
-	virtual bool init(GameGUIFacade* gui);
+	CREATE_FUNC(HudMenu);
+
+	virtual bool init();
 
 	void setScore(int);
 };

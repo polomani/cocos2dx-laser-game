@@ -7,12 +7,16 @@
 #define MUTE_BUTTON "mute.png"
 #define UNMUTE_BUTTON "unmute.jpg"
 
-Scene* MainMenuScene::createScene()
+Scene* MainMenuScene::_scene(nullptr);
+
+Scene* MainMenuScene::getSceneInstance()
 {
-	auto scene = Scene::create();
-	auto layer = MainMenuScene::create();
-	scene->addChild(layer);
-	return scene;
+	if (!_scene) {
+		_scene = Scene::create();
+		auto layer = MainMenuScene::create();
+		_scene->addChild(layer);
+	}
+	return _scene;
 }
 
 
@@ -97,7 +101,7 @@ void MainMenuScene::update(float dt)
 
 void MainMenuScene::play(Ref* ref)
 {
-	auto nextScene = GameScene::createScene();
+	auto nextScene = GameScene::getSceneInstance();
 	auto transition = TransitionFade::create(0.5, nextScene);
 	Director::getInstance()->replaceScene(transition);
 }

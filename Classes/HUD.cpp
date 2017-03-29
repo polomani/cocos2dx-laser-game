@@ -10,7 +10,7 @@ USING_NS_CC;
 #define SSTR( x ) static_cast< std::ostringstream & >( \
         ( std::ostringstream() << std::dec << x ) ).str()
 
-bool HudMenu::init(GameGUIFacade* gui)
+bool HudMenu::init()
 {
 	if (!Layer::init())
 	{
@@ -31,13 +31,16 @@ bool HudMenu::init(GameGUIFacade* gui)
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	EventListenerTouchOneByOne* touchListener = EventListenerTouchOneByOne::create();
-	touchListener->onTouchBegan = CC_CALLBACK_2(GameGUIFacade::showPauseWindowTouch, gui);
+	touchListener->onTouchBegan = [](Touch* touch, Event* event) { 
+		GameGUIFacade::getInstance()->showPauseWindowTouch(touch, event); 
+		return true; 
+	};
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, pauseButton);
 #endif
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 	EventListenerMouse* clickListener = EventListenerMouse::create();
-	clickListener->onMouseDown = CC_CALLBACK_1(GameGUIFacade::showPauseWindowClick, gui);
+	clickListener->onMouseDown = [](Event* event) { GameGUIFacade::getInstance()->showPauseWindowClick(event); };
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(clickListener, pauseButton);
 #endif
 

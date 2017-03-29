@@ -79,7 +79,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-	auto scene = MainMenuScene::createScene();
+	auto scene = MainMenuScene::getSceneInstance();
 
     // run
     director->runWithScene(scene);
@@ -88,7 +88,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 }
 
 void AppDelegate::applicationDidEnterBackground() {
-	GameScene* gameScene = dynamic_cast<GameScene*> (Director::getInstance()->getRunningScene()->getChildByName("GameScene"));
+	GameScene* gameScene = GameScene::getInstance();
 	if (gameScene && gameScene->isRunning()) {
 		gameScene->getGui()->showPauseWindow();
 	}

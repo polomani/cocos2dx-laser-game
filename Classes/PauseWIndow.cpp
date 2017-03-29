@@ -36,7 +36,7 @@ bool PauseWindow::init() {
 
 void PauseWindow::show() {
 	Director::getInstance()->pause();
-	GameScene* gameScene = dynamic_cast<GameScene*> (Director::getInstance()->getRunningScene()->getChildByName("GameScene"));
+	GameScene* gameScene = GameScene::getInstance();
 	if (gameScene && gameScene->isRunning()) {
 		setVisible(true);
 	}

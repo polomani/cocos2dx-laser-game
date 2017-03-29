@@ -11,13 +11,15 @@ class PauseWindow;
 class GameGUIFacade : public Layer
 {
 private:
+	static GameGUIFacade* _gui;
 	HudMenu* _hudMenu;
 	GameOverMenu* _gameOverMenu;
 	PauseWindow* _pauseWindow;
-public:	
 	CREATE_FUNC(GameGUIFacade);
+public:	
 	virtual bool init();
 
+	static GameGUIFacade* getInstance();
 	void showGameOverMenu(int);
 	void setScore(int);
 	void showPauseWindow();

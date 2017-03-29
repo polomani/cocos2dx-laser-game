@@ -7,12 +7,13 @@
 #include "Hero.h"
 #include "GameOverMenu.h"
 
-class GameScene : public cocos2d::Layer
+USING_NS_CC;
+
+class GameScene : public Layer
 {
 private:
-	/*
-	for some devices position should be reverse by axis Oy
-	*/
+	static Scene* _scene;
+
 	float _score;
 
 	GameGUIFacade* _gui;
@@ -22,9 +23,13 @@ private:
 	Hero* _hero;
 
 	bool _running = true;
+
+	CREATE_FUNC(GameScene);
 public:
 
-    static cocos2d::Scene* createScene();
+	static GameScene* getInstance();
+
+	static Scene* getSceneInstance();
 
     virtual bool init();
 
@@ -32,20 +37,17 @@ public:
 
 	void setScore(float);
 
-	void onMouseDown(cocos2d::Event *event);
-	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
+	void onMouseDown(Event *event);
+	virtual bool onTouchBegan(Touch*, Event*);
 	virtual void onEnterTransitionDidFinish();
     
     // a selector callback
-    void menuCloseCallback(cocos2d::Ref* pSender);
+    void menuCloseCallback(Ref* pSender);
     
-    // implement the "static create()" method manually
-	CREATE_FUNC(GameScene);
-
 	GameGUIFacade* getGui() { return _gui; };
 	bool isRunning();
 	void setRunning(bool b);
-	static void reverse(cocos2d::Vec2&);
+	static void reverse(Vec2&);
 };
 
 #endif // __GAME_SCENE_H__

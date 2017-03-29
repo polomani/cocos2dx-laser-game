@@ -5,6 +5,15 @@
 
 #define COCOS2D_DEBUG 1
 
+GameGUIFacade* GameGUIFacade::_gui(nullptr);
+
+GameGUIFacade* GameGUIFacade::getInstance() {
+	if (!_gui)
+		_gui = GameGUIFacade::create();
+
+	return _gui;
+}
+
 bool GameGUIFacade::init()
 {
 	if (!Layer::init())
@@ -12,7 +21,7 @@ bool GameGUIFacade::init()
 		return false;
 	}
 
-	_hudMenu = HudMenu::create(this);
+	_hudMenu = HudMenu::create();
 	this->addChild(_hudMenu, 4);
 
 	_gameOverMenu = GameOverMenu::create();

@@ -8,14 +8,17 @@ USING_NS_CC;
 
 class MainMenuScene: public Layer
 {
+	static Scene* _scene;
+
 	Generator* _generator;
 
 	MenuItemImage* _soundButton;
+
+	CREATE_FUNC(MainMenuScene);
 public:
-	static Scene* createScene();
+	static Scene* getSceneInstance();
 	virtual bool init();
 	virtual void update(float);
-	CREATE_FUNC(MainMenuScene);
 	void play(Ref*);
 	void sound(Ref*);
 };

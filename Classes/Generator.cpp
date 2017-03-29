@@ -5,6 +5,7 @@
 #include "cocos2d.h"
 #include "ShaderUtil.h"
 #include "AudioUtil.h"
+#include "GameScene.h"
 
 USING_NS_CC;
 
@@ -93,7 +94,7 @@ void Generator::collideLasersVsHero()
 		return true;
 	};
 
-	PhysicsWorld* world = Director::getInstance()->getRunningScene()->getPhysicsWorld();
+	PhysicsWorld* world = GameScene::getSceneInstance()->getPhysicsWorld();
 
 	for (const auto &i : _lasers)
 		world->rayCast( hit,

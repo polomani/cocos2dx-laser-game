@@ -88,7 +88,7 @@ void GameOverMenu::show(int score)
 
 void GameOverMenu::menuRestartClick(Ref* pSender)
 {
-	GameScene* scene = (GameScene*) Director::getInstance()->getRunningScene()->getChildByName("GameScene");
+	GameScene* scene = GameScene::getInstance();
 	scene->setRunning(true);
 	setVisible(false);
 	AudioUtil::startLazerMoveBackground();

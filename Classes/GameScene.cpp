@@ -10,15 +10,24 @@
 #define PHYSICS_PLIST "physics.json.plist"
 USING_NS_CC;
 
-Scene* GameScene::createScene()
+Scene* GameScene::_scene(0);
+
+Scene* GameScene::getSceneInstance()
 {
-	auto scene = Scene::createWithPhysics();
-    
-	auto layer = GameScene::create();
+	if (!_scene) {
+		_scene = Scene::createWithPhysics();
+		auto layer = GameScene::create();
+		_scene->addChild(layer, 0, 0);
+	}
 
-    scene->addChild(layer, 0, "GameScene");
+    return _scene;
+}
 
-    return scene;
+GameScene* GameScene::getInstance()
+{
+	if (_scene)
+		return dynamic_cast<GameScene*>  (getSceneInstance()->getChildByTag(0));
+	return nullptr;
 }
 
 bool GameScene::init()
@@ -40,7 +49,7 @@ bool GameScene::init()
 	_generator->addLaser();
 	this->addChild(_generator, 0);
 
-	_gui = GameGUIFacade::create();
+	_gui = GameGUIFacade::getInstance();
 	this->addChild(_gui, 3);
 	setScore(0);
 
