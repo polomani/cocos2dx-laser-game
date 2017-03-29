@@ -5,10 +5,9 @@
 #include "Math.h"
 #include "IOS"
 #include "AudioUtil.h"
+#include "Static.h"
 
-#define COCOS2D_DEBUG 1
 #define PHYSICS_PLIST "physics.json.plist"
-USING_NS_CC;
 
 Scene* GameScene::_scene(0);
 
@@ -71,7 +70,7 @@ bool GameScene::init()
     return true;
 }
 
-void GameScene::onMouseDown(cocos2d::Event *event)
+void GameScene::onMouseDown(Event *event)
 {
 	if (!isRunning())
 	{
@@ -81,20 +80,20 @@ void GameScene::onMouseDown(cocos2d::Event *event)
 	_hero->jump(e->getLocationInView());
 }
 
-bool GameScene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
+bool GameScene::onTouchBegan(Touch* touch, Event* event)
 {
 	if (!isRunning())
 	{
 		return true;
 	}
-	cocos2d::Vec2 to = touch->getLocationInView();
+	Vec2 to = touch->getLocationInView();
 	reverse(to);
 	_hero->jump(to);
 
 	return true;
 }
 
-void GameScene::reverse(cocos2d::Vec2& vec)
+void GameScene::reverse(Vec2& vec)
 {
 	Size size = Director::getInstance()->getVisibleSize();
 	vec.y = size.height - vec.y;

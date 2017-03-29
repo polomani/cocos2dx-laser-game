@@ -1,9 +1,8 @@
 #ifndef __PAUSE_WINDOW__
 #define __PAUSE_WINDOW__
 
-#include "cocos2d.h"
+#include "Static.h"
 #include "GameGUIFacade.h"
-USING_NS_CC;
 
 class PauseWindow: public LayerColor  {
 private:

@@ -1,10 +1,9 @@
 #ifndef __MAIN_MENU_SCENE__
 #define __MAIN_MENU_SCENE__
 
-#include "cocos2d.h"
+#include "Static.h"
 #include "Generator.h"
 
-USING_NS_CC;
 
 class MainMenuScene: public Layer
 {

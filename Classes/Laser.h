@@ -1,13 +1,13 @@
 #ifndef __LASER_H__
 #define __LASER_H__
 
-#include "cocos2d.h"
+#include "Static.h"
 
 class Laser
 {
 private:
 	float _x, _y, _dx, _dy, _tox, _toy;
-	cocos2d::Vec2 _direction;
+	Vec2 _direction;
 	float _angle;
 public:
 	Laser(float x, float y, float tox, float toy, float radius, float angle);

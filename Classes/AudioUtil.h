@@ -1,8 +1,7 @@
 #ifndef _AUDIO_H_
 #define _AUDIO_H_
 
-#include "cocos2d.h"
-using namespace cocos2d;
+#include "Static.h"
 
 class AudioUtil
 {

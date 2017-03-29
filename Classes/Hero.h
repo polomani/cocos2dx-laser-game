@@ -1,8 +1,7 @@
 #ifndef __HERO_H__
 #define __HERO_H__
 
-#include "cocos2d.h"
-USING_NS_CC;
+#include "Static.h"
 
 class Hero : public Sprite
 {

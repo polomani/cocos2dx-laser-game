@@ -1,11 +1,10 @@
 #ifndef __GameGUI_h__
 #define __GameGUI_h__
 
-#include "cocos2d.h"
-#include "GameOverMenu.h"
+#include "Static.h"
 #include "HUD.h"
+#include "GameOverMenu.h"
 
-using namespace cocos2d;
 
 class PauseWindow;
 class GameGUIFacade : public Layer

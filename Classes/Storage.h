@@ -1,11 +1,7 @@
 #ifndef _STORAGE_H_
 #define _STORAGE_H_
 
-#include "cocos2d.h"
-using namespace cocos2d;
-
-#include <string.h>
-using namespace std;
+#include "Static.h"
 
 class Storage
 {

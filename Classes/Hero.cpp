@@ -1,9 +1,8 @@
 #include "Hero.h"
 #include "PhysicsShapeCache.h"
-#include "cocos2d.h"
+#include "Static.h"
 #include "AudioUtil.h"
 
-USING_NS_CC;
 
 #define HERO_PHYSICS_BODY "hero"
 #define HERO_PNG "hero.png"
@@ -29,7 +28,7 @@ bool Hero::init()
 	return true;
 }
 
-void Hero::jump(cocos2d::Vec2 to)
+void Hero::jump(Vec2 to)
 {
 	if (jumpInProcess)
 		return;
@@ -37,7 +36,7 @@ void Hero::jump(cocos2d::Vec2 to)
 	AudioUtil::jumpEffect();
 	jumpInProcess = true;
 
-	cocos2d::Vec2 movement = Vec2(to.y - this->getPositionY(),
+	Vec2 movement = Vec2(to.y - this->getPositionY(),
 								  to.x - this->getPositionX());
 	float angle = atan2(movement.x, movement.y);
 	this->setRotation(90 - angle / M_PI * 180);

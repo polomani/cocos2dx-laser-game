@@ -1,11 +1,7 @@
 #include "GameScene.h"
 #include "AudioUtil.h"
 #include "Storage.h"
-
-using namespace cocos2d;
-
-#define SSTR( x ) static_cast< std::ostringstream & >( \
-        ( std::ostringstream() << std::dec << x ) ).str()
+#include "Static.h"
 
 GameOverMenu::GameOverMenu()
 {

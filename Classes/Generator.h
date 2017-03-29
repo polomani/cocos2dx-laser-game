@@ -4,9 +4,9 @@
 #include "Laser.h"
 #include <vector>
 #include <ctime>
-#include "cocos2d.h"
+#include "Static.h"
 
-class Generator : public cocos2d::DrawNode
+class Generator : public DrawNode
 {
 private:
 	int _width, _height, _hWidth, _hHeight;
@@ -15,8 +15,8 @@ private:
 	std::vector<Laser> _lasers;
 	void render(Laser& laser);
 	
-	cocos2d::GLProgram* _shaderProgram;
-	cocos2d::Vec4 _lazerColor;
+	GLProgram* _shaderProgram;
+	Vec4 _lazerColor;
 
 	void generateLazerColor();
 

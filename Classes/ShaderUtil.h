@@ -1,7 +1,7 @@
 #ifndef _SHADER_UTIL_
 #define _SHADER_UTIL_
 
-#include "cocos2d.h"
+#include "Static.h"
 #include <string.h>
 
 using namespace cocos2d;

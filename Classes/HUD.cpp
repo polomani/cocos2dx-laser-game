@@ -1,14 +1,10 @@
 #include "HUD.h"
 #include <sstream>
-#include "cocos2d.h"
+#include "Static.h"
 #include "GameGUIFacade.h"
 #include "GameScene.h"
 #include "MainMenuScene.h"
 
-USING_NS_CC;
-
-#define SSTR( x ) static_cast< std::ostringstream & >( \
-        ( std::ostringstream() << std::dec << x ) ).str()
 
 bool HudMenu::init()
 {
@@ -45,7 +41,7 @@ bool HudMenu::init()
 #endif
 
 
-	pauseButton->setScale(0.1);
+	pauseButton->setScale(0.1f);
 	pauseButton->setPosition(Vec2(origin.x + visibleSize.width - pauseButton->getContentSize().width * pauseButton->getScale() / 2,
 		origin.y + pauseButton->getContentSize().height * pauseButton->getScale() / 2));
 

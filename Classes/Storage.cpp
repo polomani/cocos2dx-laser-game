@@ -1,6 +1,4 @@
-#include "cocos2d.h"
-using namespace cocos2d;
-
+#include "Static.h"
 #include "Storage.h"
 
 int Storage::geti(const char* key)

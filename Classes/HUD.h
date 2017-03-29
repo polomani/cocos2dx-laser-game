@@ -1,8 +1,7 @@
 #ifndef _HUD_H_
 #define _HUD_H_
 
-#include "cocos2d.h"
-using namespace cocos2d;
+#include "Static.h"
 
 class GameGUIFacade;
 class HudMenu : public Layer

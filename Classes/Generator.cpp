@@ -2,12 +2,10 @@
 #include "Math.h"
 #include <vector>
 #include <ctime>
-#include "cocos2d.h"
+#include "Static.h"
 #include "ShaderUtil.h"
 #include "AudioUtil.h"
 #include "GameScene.h"
-
-USING_NS_CC;
 
 float random(int min, int max)
 {
@@ -112,17 +110,17 @@ void Generator::render()
 
 void Generator::render(Laser& l)
 {
-	drawSegment(cocos2d::Vec2(l.bx(), l.by()), 
-						  cocos2d::Vec2(l.ax(), l.ay()), 
+	drawSegment(Vec2(l.bx(), l.by()), 
+						  Vec2(l.ax(), l.ay()), 
 						  3.0f,
-						  cocos2d::Color4F::RED);
+						  Color4F::RED);
 }
 
 void Generator::generateLazerColor()
 {
-	cocos2d::Vec4 color = Vec4(1 / random(1, 10), 1 / random(1, 10), 1 / random(1, 10), 1 / random(1, 4));
+	Vec4 color = Vec4(1 / random(1, 10), 1 / random(1, 10), 1 / random(1, 10), 1 / random(1, 4));
 
-	cocos2d::GLProgramState* state = cocos2d::GLProgramState::getOrCreateWithGLProgram(_shaderProgram);
+	GLProgramState* state = GLProgramState::getOrCreateWithGLProgram(_shaderProgram);
 
 	// name of paramert in lazer vertex shader
 	state->setUniformVec4("lazer_color", color);

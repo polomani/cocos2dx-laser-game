@@ -3,11 +3,11 @@
 #include "cocos2d.h"
 
 class GameScene;
-class GameOverMenu : public cocos2d::LayerColor
+class GameOverMenu : public LayerColor
 {
 private:
-	cocos2d::MenuItemLabel* _recordLabel;
-	cocos2d::MenuItemLabel* _currentPointsLabel;
+	MenuItemLabel* _recordLabel;
+	MenuItemLabel* _currentPointsLabel;
 public:
 	CREATE_FUNC(GameOverMenu);
 
@@ -17,7 +17,7 @@ public:
 
 	void show(int score);
 
-	void menuRestartClick(cocos2d::Ref* pSender);
+	void menuRestartClick(Ref* pSender);
 	void currentPoints(int points);
 };
 

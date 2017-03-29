@@ -1,8 +1,6 @@
 #include "Laser.h"
 #include "Math.h"
-#include "cocos2d.h"
-
-#define COCOS2D_DEBUG 1
+#include "Static.h"
 
 Laser::Laser(float x, float y, float tox, float toy, float radius, float angle) :
 _x(x), 

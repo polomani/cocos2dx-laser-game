@@ -116,6 +116,9 @@
     <ClInclude Include="..\Classes\PauseWindow.h">
       <Filter>src\gui</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\Static.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

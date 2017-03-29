@@ -2,8 +2,7 @@
 #include "PauseWindow.h"
 #include "GameScene.h"
 #include <sstream>
-
-#define COCOS2D_DEBUG 1
+#include "Static.h"
 
 GameGUIFacade* GameGUIFacade::_gui(nullptr);
 
