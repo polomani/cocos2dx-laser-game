@@ -112,7 +112,7 @@ void GameScene::update(float dt)
 		this->_running = false;
 	}
 
-	if (_generator->numLasers() < 10 && _generator->timeFromLastLaser()>=1)
+	if (_generator->numLasers() < 20 && _generator->timeFromLastLaser() >= 1)
 		_generator->addLaser();
 
 	_generator->step(dt);
@@ -157,4 +157,12 @@ void GameScene::onEnterTransitionDidFinish()
 {
 	Layer::onEnterTransitionDidFinish();
 	this->scheduleUpdate();
+
+	for (float dt = 0; dt < 2.5; dt += 0.5)
+	{
+		_generator->addLaser();
+
+		_generator->step(dt);
+		_generator->render();
+	}
 }
