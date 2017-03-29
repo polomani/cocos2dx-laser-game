@@ -3,6 +3,8 @@
 #include "Storage.h"
 #include "AudioUtil.h"
 
+#include "SonarFrameworks.h"
+
 #define MUTE "mute"
 #define MUTE_BUTTON "mute.png"
 #define UNMUTE_BUTTON "unmute.jpg"
@@ -83,6 +85,9 @@ bool MainMenuScene::init()
 
 	this->scheduleUpdate();
 	AudioUtil::startLazerMoveBackground();
+
+	SonarCocosHelper::GooglePlayServices::signIn();
+
 	return true;
 }
 
@@ -104,6 +109,11 @@ void MainMenuScene::play(Ref* ref)
 
 void MainMenuScene::sound(Ref* ref)
 {
+	if (true)
+	{
+		SonarCocosHelper::GooglePlayServices::showAchievements();
+		return;
+	}
 	bool mute = !Storage::getb(MUTE);
 	char* button;
 
