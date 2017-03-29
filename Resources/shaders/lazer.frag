@@ -6,8 +6,8 @@ varying vec4 v_fragmentColor;
 
 void main()
 {
-    if(mod(CC_SinTime[1], 0.005) > 0.003)
-        discard;
+    //if(mod(CC_SinTime[1], 0.005) > 0.003)
+    //    discard;
 
     gl_FragColor = vec4(v_fragmentColor.xyz, 1);
 }
