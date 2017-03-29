@@ -7,6 +7,8 @@ class Hero : public Sprite
 {
 private:
 	bool jumpInProcess = false;
+
+	float getScaleOnJump(float length);
 public:
 	CREATE_FUNC(Hero);
 	virtual bool init();

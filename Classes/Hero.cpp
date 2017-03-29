@@ -41,16 +41,48 @@ void Hero::jump(Vec2 to)
 	float angle = atan2(movement.x, movement.y);
 	this->setRotation(90 - angle / M_PI * 180);
 	
-	auto callback = CallFunc::create([this]() { this->endJumping(); });
-	Sequence* sequence = Sequence::create(
-		CCMoveTo::create(movement.length()*JUMP_SPEED, to),
-		callback,
+	float length = movement.length();
+	float duration = length * JUMP_SPEED;
+
+	CallFunc* endJumpCallBack = CallFunc::create([this]() { this->endJumping(); });
+	Sequence* jumpSequence = Sequence::create(
+		CCMoveTo::create(duration, to),
+		endJumpCallBack,
 		NULL
 	);
-	this->runAction(sequence);
+
+	float scale = getScaleOnJump(length);
+
+	Sequence* scaleSequesnce = Sequence::create(
+		ScaleBy::create(duration / 2, scale),
+		ScaleBy::create(duration / 2, 1 / scale),
+		nullptr
+		);
+
+
+	// run parallel actions
+	this->runAction(Spawn::create(jumpSequence, scaleSequesnce, nullptr));
 }
 
 void Hero::endJumping()
 {
 	jumpInProcess = false;
+}
+
+float Hero::getScaleOnJump(float length)
+{
+	Size size = Director::getInstance()->getVisibleSize();
+
+	// maximum distans player can jump
+	float diagonal = sqrt(size.width*size.width + size.height*size.height);
+
+	float jumpRatio =  (length / diagonal) * 5;
+
+	// max posible jump scale is 5, but posible values smaller then 1
+	// so allow only scale from 2 to 4
+	if (jumpRatio < 2)
+		return 2;
+	if (jumpRatio > 4)
+		return 4;
+	return jumpRatio;
 }
