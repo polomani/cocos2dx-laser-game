@@ -5,6 +5,7 @@ APP_LDFLAGS := -latomic
 
 APP_ABI := armeabi
 
+APP_SHORT_COMMANDS := true
 
 ifeq ($(NDK_DEBUG),1)
   APP_CPPFLAGS += -DCOCOS2D_DEBUG=1
@@ -13,3 +14,5 @@ else
   APP_CPPFLAGS += -DNDEBUG
   APP_OPTIM := release
 endif
+
+APP_CPPFLAGS += -Wno-error=format-security
