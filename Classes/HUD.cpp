@@ -19,7 +19,7 @@ bool HudMenu::init()
 	_score = Label::createWithBMFont("fonts/font.fnt", "0");
 	_score->setPosition(Point(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height - _score->getBoundingBox().size.height / 2));
-	this->addChild(_score, 1);
+	addChild(_score, 1);
 
 	auto pauseButton = MenuItemImage::create(
 		"pause-button.png",
@@ -47,7 +47,7 @@ bool HudMenu::init()
 
 	auto menu = Menu::create(pauseButton, NULL);
 	menu->setPosition(Vec2::ZERO);
-	this->addChild(menu, 5);
+	addChild(menu, 5);
 
 	return true;
 }

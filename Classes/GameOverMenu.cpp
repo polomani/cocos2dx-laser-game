@@ -60,7 +60,7 @@ bool GameOverMenu::init()
 			origin.y + visibleSize.height / 2 + 100
 		)
 	);
-	this->addChild(menu, 1);
+	addChild(menu, 1);
 
 	return true;
 }
@@ -76,7 +76,7 @@ void GameOverMenu::show(int score)
 	if (score > record)
 	{
 		Storage::seti("record", score);
-		_recordLabel->setString("NEW Best: " + SSTR(record));
+		_recordLabel->setString("NEW Best: " + SSTR(score));
 	}
 
 	setVisible(true);
@@ -84,13 +84,6 @@ void GameOverMenu::show(int score)
 
 void GameOverMenu::menuRestartClick(Ref* pSender)
 {
-	GameScene* scene = GameScene::getInstance();
-	scene->setRunning(true);
-	for (float dt = 0; dt < 2.5; dt += 0.5)
-	{
-		scene->update(dt);
-	}
-	scene->setScore(0);
+	GameScene::getInstance()->startGame();
 	setVisible(false);
-	AudioUtil::startLazerMoveBackground();
 }

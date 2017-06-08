@@ -22,7 +22,7 @@ private:
 
 	Hero* _hero;
 
-	bool _running = true;
+	bool _running;
 
 	CREATE_FUNC(GameScene);
 public:
@@ -37,16 +37,14 @@ public:
 
 	void setScore(float);
 
+	void startGame();
+	void gameOver();
 	void onMouseDown(Event *event);
 	virtual bool onTouchBegan(Touch*, Event*);
 	virtual void onEnterTransitionDidFinish();
     
-    // a selector callback
-    void menuCloseCallback(Ref* pSender);
-    
 	GameGUIFacade* getGui() { return _gui; };
 	bool isRunning();
-	void setRunning(bool b);
 	static void reverse(Vec2&);
 };
 

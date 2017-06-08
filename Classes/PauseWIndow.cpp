@@ -29,7 +29,7 @@ bool PauseWindow::init() {
 	auto label = Label::createWithBMFont("fonts/font.fnt", "Tap to continue");
 	label->setPosition(Point(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height/2));
-	this->addChild(label, 1);
+	addChild(label, 1);
 
 	return true;
 }

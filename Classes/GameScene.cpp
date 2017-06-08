@@ -42,15 +42,13 @@ bool GameScene::init()
 	PhysicsShapeCache::getInstance()->addShapesWithFile(PHYSICS_PLIST);
 
 	_hero = Hero::create();
-    this->addChild(_hero, 2);
+    addChild(_hero, 2);
 
     _generator = Generator::create();
-	_generator->addLaser();
-	this->addChild(_generator, 0);
+	addChild(_generator, 0);
 
 	_gui = GameGUIFacade::getInstance();
-	this->addChild(_gui, 3);
-	setScore(0);
+	addChild(_gui, 3);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	EventListenerTouchOneByOne* touchListener = EventListenerTouchOneByOne::create();
@@ -63,9 +61,6 @@ bool GameScene::init()
 	mouseListener->onMouseDown = CC_CALLBACK_1(GameScene::onMouseDown, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
 #endif
-
-
-	AudioUtil::startLazerMoveBackground();
 
     return true;
 }
@@ -106,12 +101,6 @@ void GameScene::update(float dt)
 		return;
 	}
 
-	if (_generator->islaserHitHero())
-	{
-		_gui->showGameOverMenu(_score);
-		this->_running = false;
-	}
-
 	if (_generator->numLasers() < 20 && _generator->timeFromLastLaser() >= 1)
 		_generator->addLaser();
 
@@ -121,15 +110,6 @@ void GameScene::update(float dt)
 		_generator->collideLasersVsHero();
 
 	setScore(_score + dt);
-}
-
-void GameScene::menuCloseCallback(Ref* pSender)
-{
-    Director::getInstance()->end();
-
-    #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-	#endif
 }
 
 void GameScene::setScore(float score)
@@ -143,26 +123,35 @@ bool GameScene::isRunning()
 	return _running;
 }
 
-void GameScene::setRunning(bool b)
+void GameScene::gameOver()
 {
-	_generator->cleanLasers();
-	auto visibleSize = Director::getInstance()->getVisibleSize();
-	_hero->jump(Vec2(visibleSize.width/2, visibleSize.height/2));
-	_running = b;
-	_generator->setLaserHitHero(!b);
-	setScore(0);
+	_gui->showGameOverMenu(_score);
+	_running = false;
+	AudioUtil::laserHitEffect();
+	AudioUtil::endLazerMoveBackground();
+	AudioUtil::gameOverPlayground();
 }
 
 void GameScene::onEnterTransitionDidFinish()
 {
 	Layer::onEnterTransitionDidFinish();
-	this->scheduleUpdate();
+	startGame();
+	scheduleUpdate();
+}
 
-	for (float dt = 0; dt < 2.5; dt += 0.5)
+void GameScene::startGame()
+{
+	_generator->cleanLasers();
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	_hero->jump(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+	_running = true;
+
+	for (float dt = 0; dt < 2.5; dt+=0.5)
 	{
 		_generator->addLaser();
-
-		_generator->step(dt);
-		_generator->render();
+		update(dt);
 	}
+	
+	setScore(0);
+	AudioUtil::startLazerMoveBackground();
 }

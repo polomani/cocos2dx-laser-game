@@ -18,8 +18,8 @@ bool Hero::init()
 
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	auto size = Director::getInstance()->getVisibleSize();
-	this->setPosition(Vec2(size.width / 2 + origin.x, size.height / 2 + origin.y));
-	this->setScale(size.width / 10 / 250);
+	setPosition(Vec2(size.width / 2 + origin.x, size.height / 2 + origin.y));
+	setScale(size.width / 10 / 250);
 
 	auto physicsBody = PhysicsShapeCache::getInstance()->createBodyWithName(HERO_PHYSICS_BODY);
 	physicsBody->setDynamic(false);
@@ -36,15 +36,15 @@ void Hero::jump(Vec2 to)
 	AudioUtil::jumpEffect();
 	jumpInProcess = true;
 
-	Vec2 movement = Vec2(to.y - this->getPositionY(),
-								  to.x - this->getPositionX());
+	Vec2 movement = Vec2(to.y - getPositionY(),
+								  to.x - getPositionX());
 	float angle = atan2(movement.x, movement.y);
-	this->setRotation(90 - angle / M_PI * 180);
+	setRotation(90 - angle / M_PI * 180);
 	
 	float length = movement.length();
 	float duration = length * JUMP_SPEED;
 
-	CallFunc* endJumpCallBack = CallFunc::create([this]() { this->endJumping(); });
+	CallFunc* endJumpCallBack = CallFunc::create([this]() { endJumping(); });
 	Sequence* jumpSequence = Sequence::create(
 		CCMoveTo::create(duration, to),
 		endJumpCallBack,
@@ -61,7 +61,7 @@ void Hero::jump(Vec2 to)
 
 
 	// run parallel actions
-	this->runAction(Spawn::create(jumpSequence, scaleSequesnce, nullptr));
+	runAction(Spawn::create(jumpSequence, scaleSequesnce, nullptr));
 }
 
 void Hero::endJumping()

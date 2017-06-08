@@ -85,10 +85,7 @@ void Generator::collideLasersVsHero()
 	PhysicsRayCastCallbackFunc hit = [this](PhysicsWorld& world,
 		const PhysicsRayCastInfo& info, void* data)->bool
 	{
-		this->setLaserHitHero(true);
-		AudioUtil::laserHitEffect();
-		AudioUtil::endLazerMoveBackground();
-		AudioUtil::gameOverPlayground();
+		GameScene::getInstance()->gameOver();
 		return true;
 	};
 

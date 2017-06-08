@@ -19,8 +19,6 @@ private:
 	Vec4 _lazerColor;
 
 	void generateLazerColor();
-
-	bool _laserHitHero = false;
 public:
 	// constructor will be invoked by create function
 	Generator();
@@ -34,8 +32,6 @@ public:
 	void render();
 	void collideLasersVsHero();
 	void addLaser();
-	bool islaserHitHero() { return _laserHitHero; }
-	void setLaserHitHero(bool b) { _laserHitHero = b; }
 	void cleanLasers();
 };
 

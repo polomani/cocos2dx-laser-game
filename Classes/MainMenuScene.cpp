@@ -47,7 +47,7 @@ bool MainMenuScene::init()
 	playItem->setScale(0.5);
 
 	bool mute = Storage::getb(MUTE);
-	char* button;
+	string button;
 
 	if (mute)
 	{
@@ -75,17 +75,17 @@ bool MainMenuScene::init()
 
 	auto menu = Menu::createWithArray(menuItems);
 	menu->setPosition(Point(midlX, origin.y + visibleSize.height / 2 + 100));
-	this->addChild(menu, 1);
+	addChild(menu, 1);
 
 	_generator = Generator::create();
-	_generator->addLaser();
-	this->addChild(_generator, 0);
+	addChild(_generator, 0);
 
 	//add first lasers
-	for (float dt = 0; dt < 5; dt++)
+	for (float dt = 0; dt < 5; dt++) {
 		update(dt);
+	}
 
-	this->scheduleUpdate();
+	scheduleUpdate();
 	AudioUtil::startLazerMoveBackground();
 	return true;
 }
@@ -109,7 +109,7 @@ void MainMenuScene::play(Ref* ref)
 void MainMenuScene::sound(Ref* ref)
 {
 	bool mute = !Storage::getb(MUTE);
-	char* button;
+	string button;
 
 	if (mute)
 	{

@@ -45,33 +45,27 @@ void AudioUtil::init()
 void AudioUtil::jumpEffect()
 {
 	init();
-	SimpleAudioEngine* engine = SimpleAudioEngine::getInstance();
-	engine->playEffect(JUMP_EFFECT);
-	if (_mute)
+	if (!_mute)
 	{
-		mute();
+		SimpleAudioEngine::getInstance()->playEffect(JUMP_EFFECT);
 	}
 }
 
 void AudioUtil::laserHitEffect()
 {
 	init();
-	SimpleAudioEngine* engine = SimpleAudioEngine::getInstance();
-	engine->playEffect(LASER_HIT_EFFECT);
-	if (_mute)
+	if (!_mute)
 	{
-		mute();
+		SimpleAudioEngine::getInstance()->playEffect(LASER_HIT_EFFECT);
 	}
 }
 
 void AudioUtil::gameOverPlayground()
 {
 	init();
-	SimpleAudioEngine* engine = SimpleAudioEngine::getInstance();
-	engine->playBackgroundMusic(GAME_OVER);
-	if (_mute)
+	if (!_mute)
 	{
-		mute();
+		SimpleAudioEngine::getInstance()->playBackgroundMusic(GAME_OVER);
 	}
 }
 

@@ -21,13 +21,13 @@ bool GameGUIFacade::init()
 	}
 
 	_hudMenu = HudMenu::create();
-	this->addChild(_hudMenu, 4);
+	addChild(_hudMenu, 4);
 
 	_gameOverMenu = GameOverMenu::create();
-	this->addChild(_gameOverMenu, 5);
+	addChild(_gameOverMenu, 5);
 
 	_pauseWindow = PauseWindow::create();
-	this->addChild(_pauseWindow, 6);
+	addChild(_pauseWindow, 6);
 
 	return true;
 }

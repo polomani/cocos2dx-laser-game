@@ -4,7 +4,7 @@
 #include "GameScene.h"
 #include "Static.h"
 
-static Size designResolutionSize = Size(1200, 780);
+static Size designResolutionSize = Size(1200, 600);
 static Size smallResolutionSize = Size(480, 320);
 static Size mediumResolutionSize = Size(1024, 768);
 static Size largeResolutionSize = Size(2048, 1536);
